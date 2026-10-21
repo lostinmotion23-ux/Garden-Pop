@@ -1,0 +1,16 @@
+{
+  "stats": {
+    "animals": 7,
+    "triangles": 94384,
+    "textured": true
+  },
+  "poses": [
+    "Smile",
+    "Shock",
+    "Sad",
+    "Blink"
+  ],
+  "timedBlink": true,
+  "gameLoading": true,
+  "errors": []
+}

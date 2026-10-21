@@ -4,15 +4,15 @@ Saved checkpoint: **2026-10-21**. Repository: `lostinmotion23-ux/Garden-Pop`. Pr
 
 ## Where the full project is saved
 
-The GitHub save for this step contains **the three requested images and continuation notes only**. The full code/assets are saved in the downloadable **Garden-Pop-local-checkpoint.zip** provided in the chat. Extract that ZIP and open its project folder in VS Code to continue development. If this file is being read from a preview-only GitHub clone, obtain/extract the full checkpoint before attempting to run or edit the game. Do not assume source files are present in that preview-only clone.
+**The complete project is now included in the GitHub repository**, including source, models, textures, audio, the three preview images and continuation notes. Clone `https://github.com/lostinmotion23-ux/Garden-Pop.git`, open that folder in VS Code and read this file. No separate ZIP download is needed. API keys, `.env`, `.local`, logs and installed dependencies are excluded.
 
-The initial full local Git checkpoint is `84ed340`. A full-workspace push was rejected by automatic approval review because it extended beyond the requested three-image upload and repository visibility could not be verified. The GitHub upload was narrowed accordingly; no game credentials are included in either save.
+The user explicitly confirmed uploading the full source and assets after the ZIP preview failed. This supersedes the earlier preview-only upload. Saving to GitHub does not deploy the unpublished Stage 2 changes to Project 0.
 
 ## Latest user instruction
 
 > Just save this step. I am gonna pick up locally on visual code. Make sure you note what you were doing so the AI knows where to continue from when I say continue, upload those 3 images to the github so it can show them to me there when I say continue.
 
-**Pause implementation/publication at this checkpoint.** The next AI should first display the three saved images from [the preview gallery](docs/preview-gallery.md), explain their status, then resume the work described below when the user says “continue.” No Project 0 deployment was requested as part of this save.
+**Pause implementation/publication at this checkpoint.** The next AI should first display the three saved images from [the preview gallery](docs/preview-gallery.md), explain their status, then resume the work described below when the user says “continue.” No Project 0 deployment was requested as part of this save. The later explicit instruction authorized the complete project upload to GitHub, including source and assets.
 
 ## The three images to show first
 

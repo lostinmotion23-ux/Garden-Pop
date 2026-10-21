@@ -1,0 +1,99 @@
+{
+  "lot": 3157,
+  "dimensions": [
+    12,
+    19,
+    12
+  ],
+  "design": "Miniature magical arcade pavilion",
+  "board": {
+    "columns": [
+      25,
+      24
+    ],
+    "rows": 17,
+    "radius": 0.16,
+    "colors": [
+      "#f29bc4",
+      "#b5a0ea",
+      "#8fcfee",
+      "#f2d589",
+      "#9dd4b1"
+    ],
+    "realSpheres": 321
+  },
+  "animals": [
+    {
+      "kind": "bunny",
+      "name": "Mochi",
+      "position": [
+        -3.9,
+        1.58,
+        3.0
+      ],
+      "radius": 0.63
+    },
+    {
+      "kind": "fox",
+      "name": "Clementine",
+      "position": [
+        -2.5999999999999996,
+        1.58,
+        3.0
+      ],
+      "radius": 0.63
+    },
+    {
+      "kind": "kitten",
+      "name": "Clover",
+      "position": [
+        -1.2999999999999998,
+        1.58,
+        3.0
+      ],
+      "radius": 0.63
+    },
+    {
+      "kind": "bird",
+      "name": "Pip",
+      "position": [
+        4.440892098500626e-16,
+        1.58,
+        3.0
+      ],
+      "radius": 0.63
+    },
+    {
+      "kind": "deer",
+      "name": "Fern",
+      "position": [
+        1.3000000000000003,
+        1.58,
+        3.0
+      ],
+      "radius": 0.63
+    },
+    {
+      "kind": "bear",
+      "name": "Maple",
+      "position": [
+        2.6,
+        1.58,
+        3.0
+      ],
+      "radius": 0.63
+    },
+    {
+      "kind": "axolotl",
+      "name": "Petal",
+      "position": [
+        3.900000000000001,
+        1.58,
+        3.0
+      ],
+      "radius": 0.63
+    }
+  ],
+  "decorativeAnimalBubbles": 2,
+  "maxHeight": 11.0
+}

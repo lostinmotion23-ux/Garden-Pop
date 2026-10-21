@@ -1,0 +1,33 @@
+{
+  "lot": 3157,
+  "submission": {
+    "id": 9001,
+    "kind": "experience",
+    "lot": 3157,
+    "status": "live",
+    "reasons": [],
+    "categories": [],
+    "warnings": [],
+    "created": 1792568914836
+  },
+  "version": "14ae33f7a0f52ab1",
+  "displayUnchanged": true,
+  "avatarUnchanged": true,
+  "servedAssets": [
+    {
+      "asset": "animal-portraits.png",
+      "http": 200,
+      "sha256MatchesLocal": true
+    },
+    {
+      "asset": "botanical-ground.png",
+      "http": 200,
+      "sha256MatchesLocal": true
+    },
+    {
+      "asset": "petal-normal.png",
+      "http": 200,
+      "sha256MatchesLocal": true
+    }
+  ]
+}

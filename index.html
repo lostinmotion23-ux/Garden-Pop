@@ -1,0 +1,37 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="theme-color" content="#faf5f5" />
+  <title>Bubble Critter Garden — a miniature magical arcade</title>
+  <link rel="stylesheet" href="/src/style.css" />
+</head>
+<body>
+  <header>
+    <a class="brand" href="/" aria-label="Garden Pop home"><span class="brand-flower">✿</span> garden pop<span class="brand-dot">.</span></a>
+    <span class="lot-label"><span></span> PROJECT 0 <i>/</i> LOT 3157</span>
+  </header>
+  <main>
+    <section class="intro">
+      <div class="eyebrow">A SMALL POCKET OF HAPPY</div>
+      <h1>A little world.<br>A softer <em>sky.</em></h1>
+      <p>A flower-filled arcade pavilion.<br>Seven tiny friends. A garden full of magic.</p>
+      <button id="explore" class="primary">Meet little Mochi <span aria-hidden="true">+</span></button>
+      <p><a href="/game.html">Play Bubble Critter Garden →</a></p>
+      <div class="palette" aria-label="Pastel pink, lavender, mint, and butter yellow"><b></b><b></b><b></b><b></b><span>made of softer things</span></div>
+    </section>
+    <section class="scene-section" aria-label="Interactive 3D pastel garden">
+      <div class="scene-halo"></div>
+      <div id="scene"></div>
+      <div class="scene-caption"><span class="live-dot"></span> A MINIATURE MAGICAL ARCADE</div>
+      <div id="loading" role="status">Growing a little happiness…</div>
+      <div id="animal-card" class="animal-card" hidden><span id="animal-kind"></span><strong id="animal-name"></strong><p>A little friend from the garden.</p><button id="close-card" aria-label="Close animal card">×</button></div>
+      <div class="scene-tools"><button id="rotate" aria-pressed="true" aria-label="Pause automatic rotation">‖</button><button id="reset" aria-label="Reset garden view">↺</button><span>drag to wander · tap a critter</span></div>
+    </section>
+    <aside class="detail-note"><span class="note-star">✧</span><div><strong>Little friends.<br>A little closer.</strong><p>Tiny touching bubbles.<br>All the tiny cuteness.</p></div><span class="five">♡</span></aside>
+  </main>
+  <footer><span>A GARDEN WITH ITS HEAD IN THE CLOUDS</span><span>SEVEN LITTLE FRIENDS. ONE MAGICAL GARDEN. <span class="footer-flower">✿</span></span></footer>
+  <script type="module" src="/src/main.js"></script>
+</body>
+</html>

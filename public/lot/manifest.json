@@ -1,0 +1,10 @@
+{
+  "name": "Bubble Critter Garden",
+  "description": "A miniature magical arcade pavilion: a glossy pastel hex-bubble board under curved textured timber, flowered vines and warm lanterns. Seven animated textured critters welcome visitors onto a layered garden island with a cherry tree, stone path, clover, butterflies, a small waterfall and a flower bubble launcher. Enter to play the full bubble shooter.",
+  "credits": [
+    {
+      "work": "Original pavilion, creatures, procedural PBR atlases and geometry",
+      "by": "Garden Pop"
+    }
+  ]
+}

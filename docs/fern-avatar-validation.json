@@ -1,0 +1,126 @@
+{
+  "ok": true,
+  "errors": [],
+  "warnings": [],
+  "stats": {
+    "bytes": 390404,
+    "triangles": 8434,
+    "drawCalls": 3,
+    "materials": 3,
+    "textures": 3,
+    "maxTextureSize": 1024,
+    "texels": 3145728,
+    "skinnedMeshes": 0,
+    "bones": 0,
+    "animations": 10,
+    "animationNames": [
+      "idle",
+      "fly",
+      "fly_fast",
+      "ascend",
+      "descend",
+      "joy",
+      "approval",
+      "sadness",
+      "surprise",
+      "blink"
+    ],
+    "bounds": {
+      "min": [
+        -0.6292860507965088,
+        0.009999992847442574,
+        -0.38999998569488525
+      ],
+      "max": [
+        0.8398406505584717,
+        1.8568710708618164,
+        0.5858541131019592
+      ]
+    }
+  },
+  "config": {
+    "name": "Fern \u00b7 Woodland Fox",
+    "materials": {
+      "*": {
+        "lighting": "standard"
+      }
+    },
+    "motion": {
+      "bank": 0.24,
+      "pitch": 0.17,
+      "bob": 0.025,
+      "bobSpeed": 1.7,
+      "squash": 0.1
+    },
+    "trail": "none",
+    "emotes": [
+      {
+        "name": "Joy",
+        "clip": "joy",
+        "duration": 2.2
+      },
+      {
+        "name": "Approval",
+        "clip": "approval",
+        "duration": 2
+      },
+      {
+        "name": "Sadness",
+        "clip": "sadness",
+        "duration": 2.6
+      },
+      {
+        "name": "Surprise",
+        "clip": "surprise",
+        "duration": 1.8
+      }
+    ],
+    "idle": [
+      {
+        "clip": "blink",
+        "every": [
+          2.5,
+          5
+        ],
+        "overlay": true
+      }
+    ],
+    "reactions": {
+      "pick": "approval",
+      "like": "Joy"
+    }
+  },
+  "cost": {
+    "customMs": 100.31,
+    "plainMs": 103.06,
+    "ratio": 0.97,
+    "emotes": [
+      {
+        "name": "Joy",
+        "ms": 97.14
+      },
+      {
+        "name": "Approval",
+        "ms": 102.54
+      },
+      {
+        "name": "Sadness",
+        "ms": 100.37
+      },
+      {
+        "name": "Surprise",
+        "ms": 98.48
+      },
+      {
+        "name": "pick",
+        "reaction": true,
+        "ms": 93.61
+      },
+      {
+        "name": "like",
+        "reaction": true,
+        "ms": 92.63
+      }
+    ]
+  }
+}

@@ -1,0 +1,685 @@
+{
+  "rules": "passed",
+  "art": "All eight species have UVs, PBR surfaces and expressive parts; cached clones reset pose and visibility, babies fit protective bubbles, and browser checks confirm trapped/rescued models are visible.",
+  "levels": [
+    {
+      "level": 1,
+      "ordinaryShots": 35,
+      "misses": 0,
+      "rescued": 1
+    },
+    {
+      "level": 2,
+      "ordinaryShots": 35,
+      "misses": 0,
+      "rescued": 1
+    },
+    {
+      "level": 3,
+      "ordinaryShots": 38,
+      "misses": 0,
+      "rescued": 1
+    },
+    {
+      "level": 4,
+      "ordinaryShots": 78,
+      "misses": 2,
+      "rescued": 2
+    },
+    {
+      "level": 5,
+      "ordinaryShots": 70,
+      "misses": 1,
+      "rescued": 2
+    },
+    {
+      "level": 6,
+      "ordinaryShots": 88,
+      "misses": 4,
+      "rescued": 2
+    },
+    {
+      "level": 7,
+      "ordinaryShots": 141,
+      "misses": 6,
+      "rescued": 3
+    },
+    {
+      "level": 8,
+      "ordinaryShots": 126,
+      "misses": 4,
+      "rescued": 3
+    },
+    {
+      "level": 9,
+      "ordinaryShots": 92,
+      "misses": 0,
+      "rescued": 3
+    },
+    {
+      "level": 10,
+      "ordinaryShots": 140,
+      "misses": 2,
+      "rescued": 4
+    }
+  ],
+  "browser": {
+    "victory": "passed with actual pointer shots, earned rescue, stars, score and next level",
+    "gameOver": "passed with actual failed matches reaching the attached danger line",
+    "touch": "drag/release shooting passed",
+    "menus": "settings, help, pause/resume, retry and short-screen/phone layouts passed",
+    "geometry": "30 retries reused geometry",
+    "runtimeErrors": [],
+    "missingAssets": []
+  },
+  "officialSandbox": [
+    {
+      "mode": "desktop",
+      "status": "started",
+      "errors": [],
+      "hud": "Bubble Critter Garden \u00b7 Level 1\nScore 180 \u00b7 Rescued 0/1\nShots 3 \u00b7 Rows 1\nDrag / click to aim and shoot. A missed match adds one row.\nP: pause \u00b7 R: retry \u00b7 Esc: leave",
+      "frames": {
+        "fps": 8,
+        "avg": 136.9,
+        "p95": 392.6,
+        "worst": 490.1,
+        "count": 60
+      },
+      "reconnect": "passed"
+    },
+    {
+      "mode": "phone",
+      "status": "started",
+      "errors": [],
+      "hud": "Bubble Critter Garden \u00b7 Level 1\nScore 270 \u00b7 Rescued 0/1\nShots 3 \u00b7 Rows 0\nDrag / click to aim and shoot. A missed match adds one row.\nP: pause \u00b7 R: retry \u00b7 Esc: leave",
+      "frames": {
+        "fps": 14,
+        "avg": 88,
+        "p95": 244.5,
+        "worst": 293.7,
+        "count": 89
+      },
+      "reconnect": "passed"
+    }
+  ],
+  "validation": {
+    "ok": true,
+    "errors": [],
+    "warnings": [],
+    "findings": [],
+    "manifest": {
+      "entry": "main.js",
+      "name": "Bubble Critter Garden",
+      "description": "Rescue one tiny critter at a time in a pastel 3D bubble shooter. Ten levels, mixed pastel hex rows, seven power-ups, feeding and earned bombs. Two missed matches add a row. Right-click swaps current and next colors. Bigger, sharp text, mouse/touch play, original music and weekly scores. Single-player.",
+      "maxPlayers": 1,
+      "credits": [
+        {
+          "work": "Original 3D art, procedural textures, music, sound effects and game code",
+          "by": "Garden Pop"
+        }
+      ],
+      "loading": {
+        "background": "#efe5ed",
+        "accent": "#d28ead",
+        "text": "#735367"
+      },
+      "ui": "minimized",
+      "stick": false
+    },
+    "stats": {
+      "files": 39,
+      "bytes": 7429894,
+      "sourceBytes": 114154,
+      "bundleBytes": 193557
+    },
+    "hash": "8fd3edf4fe385243"
+  },
+  "limitations": [
+    "Single-player sessions; cooperative synchronization is not implemented.",
+    "Continue retains the current visit, not progress across separate visits.",
+    "Software-renderer frame rates are below 60 fps; scenery resolution adapts while UI remains sharp."
+  ],
+  "latestRevision": {
+    "version": "e6e2a5eae73d2059",
+    "submission": 8679,
+    "status": "live",
+    "verifiedAt": "2026-10-20T21:04:42.028643+00:00",
+    "hud": "At least16 CSS px, up to2x display density, native resolution independent of scenery target",
+    "shooter": "Bare ball, unobstructed raycast in browser",
+    "swap": "Real right-click twice restores both rendered current/next colors; keyboard/touch retained",
+    "colors": "Seeded small generated patches, maximum four connected same-color bubbles",
+    "newRow": "Two missed regular matches add one row",
+    "browser": "Victory/rescue/next-level, real misses to game over, row counts, 30 retries, short and phone controls all passed",
+    "officialSandbox": "Desktop and phone loaded without runtime errors; real shots, pause, reconnect passed"
+  },
+  "latestAnimalArt": {
+    "version": "8fd3edf4fe385243",
+    "submission": 8722,
+    "status": "live",
+    "sevenReferenceSpeciesInDisplay": true,
+    "gameplayRulesUnchanged": true,
+    "assetChecks": "Actual GLB UV/PBR maps, five independent morphs, clone reset, bubble fit, UV/color integrity and non-inverting blinks passed.",
+    "browser": "Four actual mesh poses, timed blinking, game loading, real missed-shot sadness, victory/rescue/next level, danger/game over/retry, touch and stable 30 retries passed.",
+    "officialSandbox": "Final desktop/phone shots, pause and reconnect passed without runtime errors.",
+    "implementation": "animated-animal-art.md",
+    "proof": "animal-publication.json"
+  },
+  "latestGroundFoodRevision": {
+    "verifiedAt": "2026-10-21T05:36:14.088175+00:00",
+    "version": "3820a7775dec8b32",
+    "submission": {
+      "id": 8947,
+      "kind": "experience",
+      "lot": 3157,
+      "status": "live",
+      "reasons": [],
+      "categories": [],
+      "warnings": [],
+      "created": 1792560845735
+    },
+    "rules": "passed, including persistent food before rescue, pause, exact meals/bombs, snapshot/restore and stationary board on pet unlock",
+    "levels": [
+      {
+        "level": 1,
+        "ordinaryShots": 13,
+        "misses": 0,
+        "rescued": 1
+      },
+      {
+        "level": 2,
+        "ordinaryShots": 10,
+        "misses": 0,
+        "rescued": 1
+      },
+      {
+        "level": 3,
+        "ordinaryShots": 24,
+        "misses": 0,
+        "rescued": 1
+      },
+      {
+        "level": 4,
+        "ordinaryShots": 24,
+        "misses": 0,
+        "rescued": 2
+      },
+      {
+        "level": 5,
+        "ordinaryShots": 25,
+        "misses": 0,
+        "rescued": 2
+      },
+      {
+        "level": 6,
+        "ordinaryShots": 28,
+        "misses": 0,
+        "rescued": 2
+      },
+      {
+        "level": 7,
+        "ordinaryShots": 52,
+        "misses": 7,
+        "rescued": 3
+      },
+      {
+        "level": 8,
+        "ordinaryShots": 28,
+        "misses": 1,
+        "rescued": 3
+      },
+      {
+        "level": 9,
+        "ordinaryShots": 23,
+        "misses": 0,
+        "rescued": 3
+      },
+      {
+        "level": 10,
+        "ordinaryShots": 61,
+        "misses": 6,
+        "rescued": 4
+      }
+    ],
+    "browser": {
+      "desktopAndTouch": "passed with real input",
+      "victoryAndLoss": "passed",
+      "retries": 30,
+      "persistentUnclaimedFood": 15,
+      "actualMeals": 16,
+      "bombsOnlyAfterTenMeals": true,
+      "pauseFreezesGarden": true,
+      "petsEatAfterWin": true,
+      "multiplePets": "four pets shared 36 meals without duplication; snapshots independent/deterministic",
+      "errors": []
+    },
+    "officialSandbox": [
+      {
+        "mode": "desktop",
+        "status": "started",
+        "errors": [],
+        "hud": "Bubble Critter Garden \u00b7 Level 1\nScore 30 \u00b7 Rescued 0/1\nShots 3 \u00b7 Rows 1\nDrag / click to aim and shoot. Two missed matches add one row. Right-click swaps colors.\nP: pause \u00b7 R: retry \u00b7 Esc: leave",
+        "frames": {
+          "fps": 11,
+          "avg": 133,
+          "p95": 344.2,
+          "worst": 521,
+          "first": 197.9,
+          "count": 63,
+          "over50": 35,
+          "over250": 14,
+          "recent": [
+            54,
+            2,
+            272.5,
+            5.1,
+            295.6,
+            2.2,
+            337.1,
+            0,
+            343.9,
+            4.1,
+            521,
+            13.7,
+            423.2,
+            295.2,
+            274.6,
+            6.9,
+            140.6,
+            271.9,
+            1.9,
+            282.7,
+            209.9,
+            6.6,
+            159.7,
+            6.9,
+            215,
+            1.6,
+            344.2,
+            367.1,
+            7.3,
+            120.3,
+            25.9,
+            174.1,
+            28.8,
+            174.1,
+            24.3,
+            163.8,
+            4.5,
+            182,
+            0,
+            198.5,
+            1.4,
+            179.3,
+            3.8,
+            279.8,
+            4.5,
+            188.6,
+            12.9,
+            196.6,
+            1.6,
+            214.6,
+            1.8,
+            320.8,
+            164.4,
+            15.2,
+            83.9,
+            17.2,
+            162.7,
+            2,
+            138.3,
+            194.8,
+            95.7,
+            5.4
+          ]
+        },
+        "reconnect": "passed"
+      },
+      {
+        "mode": "phone",
+        "status": "started",
+        "errors": [],
+        "hud": "Bubble Critter Garden \u00b7 Level 1\nScore 0 \u00b7 Rescued 0/1\nShots 3 \u00b7 Rows 1\nDrag / click to aim and shoot. Two missed matches add one row. Right-click swaps colors.\nP: pause \u00b7 R: retry \u00b7 Esc: leave",
+        "frames": {
+          "fps": 12,
+          "avg": 87,
+          "p95": 259.5,
+          "worst": 294.2,
+          "first": 159.4,
+          "count": 88,
+          "over50": 46,
+          "over250": 5,
+          "recent": [
+            14.3,
+            4.9,
+            294.2,
+            6.7,
+            260.4,
+            5.3,
+            220.5,
+            13.2,
+            237.9,
+            13.5,
+            268.6,
+            14.8,
+            259.5,
+            235.2,
+            4.3,
+            126.8,
+            4.7,
+            179.2,
+            7.1,
+            224.9,
+            5.1,
+            189.7,
+            10.7,
+            153.3,
+            14.8,
+            142.5,
+            5.5,
+            134.4,
+            148.2,
+            3.5,
+            151.5,
+            184.8,
+            11.4,
+            88.4,
+            12.4,
+            126.1,
+            6.1,
+            107.9,
+            9,
+            146.3,
+            3.9,
+            138.7,
+            11,
+            187.2,
+            1.3,
+            74,
+            4.4,
+            183.5,
+            134.9,
+            15.1,
+            73.6,
+            9.9,
+            186.1,
+            12.8,
+            111.7,
+            5,
+            277.9,
+            5.7,
+            24.4,
+            8.6,
+            137.2,
+            13.1,
+            110.6,
+            7.7,
+            122.9,
+            28.3,
+            119,
+            131.8,
+            13.3,
+            81.6,
+            130.6,
+            91,
+            30.2,
+            44.1,
+            5.4,
+            152.4,
+            117.3,
+            103,
+            11,
+            126.9,
+            7.8,
+            131.9,
+            134.5,
+            105,
+            11,
+            75.9,
+            6.5
+          ]
+        },
+        "reconnect": "passed"
+      }
+    ],
+    "validation": {
+      "ok": true,
+      "errors": [],
+      "warnings": [],
+      "findings": [],
+      "manifest": {
+        "entry": "main.js",
+        "name": "Bubble Critter Garden",
+        "description": "Rescue one tiny critter at a time in a pastel 3D bubble shooter. Ten levels, mixed pastel hex rows, seven power-ups, feeding and earned bombs. Two missed matches add a row. Right-click swaps current and next colors. Bigger, sharp text, mouse/touch play, original music and weekly scores. Single-player.",
+        "maxPlayers": 1,
+        "credits": [
+          {
+            "work": "Original 3D art, procedural textures, music, sound effects and game code",
+            "by": "Garden Pop"
+          }
+        ],
+        "loading": {
+          "background": "#efe5ed",
+          "accent": "#d28ead",
+          "text": "#735367"
+        },
+        "ui": "minimized",
+        "stick": false
+      },
+      "stats": {
+        "files": 39,
+        "bytes": 7431708,
+        "sourceBytes": 115968,
+        "bundleBytes": 195501
+      },
+      "hash": "3820a7775dec8b32"
+    },
+    "streetExteriorUnchanged": true,
+    "equippedAvatarUnchanged": true
+  },
+  "latestContinuousGardenRevision": {
+    "verifiedAt": "2026-10-21T06:05:15.205077+00:00",
+    "version": "23769b71cc914f68",
+    "submission": {
+      "id": 8959,
+      "kind": "experience",
+      "lot": 3157,
+      "status": "live",
+      "reasons": [],
+      "categories": [],
+      "warnings": [],
+      "created": 1792562643378
+    },
+    "rules": "passed: 20/19 touching columns, 25% larger bubbles, three starting/replenishing skills, no rescue victory, persistent food and individual meals/bombs",
+    "realAimSimulation": {
+      "score": 4780,
+      "rescued": 5,
+      "refills": 2,
+      "misses": 0
+    },
+    "ordinaryShots": 58,
+    "browser": {
+      "continuousRescues": "multiple pets rescued with actual pointer shots; shooting stayed active after rescue animation",
+      "skills": "three present at start and after every replayed shot",
+      "pbr": "physical pearl-film material, captured environment and mapped surface normals verified",
+      "persistentUnclaimedFood": 15,
+      "actualMeals": 16,
+      "bombsAfterTenMeals": true,
+      "pause": true,
+      "continuedFeedingAcrossRefill": true,
+      "realMissesReachGameOver": true,
+      "touch": true,
+      "screens": [
+        "desktop",
+        "phone",
+        "short landscape"
+      ],
+      "runtimeErrors": [],
+      "missingAssets": []
+    },
+    "art": "nine existing UV/PBR mesh species with genuine expression morphs; six varying 512px color/normal/roughness texture sets, pearl-film and contact maps",
+    "officialSandbox": [
+      {
+        "mode": "desktop",
+        "status": "started",
+        "errors": [],
+        "hud": "Bubble Critter Garden \u00b7 Continuous garden\nScore 60 \u00b7 Pets rescued 0\nShots 2 \u00b7 Rows 0\nDrag / click to aim and shoot. Two missed matches add one row. Right-click swaps colors.\nP: pause \u00b7 R: retry \u00b7 Esc: leave",
+        "frames": {
+          "fps": 4,
+          "avg": 334.2,
+          "p95": 1681.8,
+          "worst": 2255,
+          "first": 277,
+          "count": 41,
+          "over50": 20,
+          "over250": 17,
+          "recent": [
+            69.2,
+            6.6,
+            549,
+            11,
+            1681.8,
+            0.1,
+            6.9,
+            8.8,
+            2255,
+            4.5,
+            8.8,
+            522.9,
+            621.4,
+            8.4,
+            322.1,
+            7.7,
+            1435.1,
+            0.1,
+            3.2,
+            753.9,
+            8.7,
+            416.5,
+            987.8,
+            0.5,
+            2.3,
+            7.7,
+            484.1,
+            575.8,
+            8.1,
+            245.9,
+            21.3,
+            453.8,
+            413.9,
+            397.6,
+            3.4,
+            363.3,
+            433.3,
+            3.8,
+            249.1,
+            15
+          ]
+        },
+        "reconnect": "passed"
+      },
+      {
+        "mode": "phone",
+        "status": "started",
+        "errors": [],
+        "hud": "Bubble Critter Garden \u00b7 Continuous garden\nScore 60 \u00b7 Pets rescued 0\nShots 3 \u00b7 Rows 0\nDrag / click to aim and shoot. Two missed matches add one row. Right-click swaps colors.\nP: pause \u00b7 R: retry \u00b7 Esc: leave",
+        "frames": {
+          "fps": 7,
+          "avg": 198.1,
+          "p95": 611.5,
+          "worst": 1445.5,
+          "first": 136.9,
+          "count": 51,
+          "over50": 26,
+          "over250": 21,
+          "recent": [
+            0.2,
+            30.6,
+            10.9,
+            1445.5,
+            21.4,
+            259.3,
+            4,
+            250.8,
+            3.3,
+            611.5,
+            883.8,
+            0.5,
+            2.3,
+            459.8,
+            208.8,
+            10.9,
+            211.5,
+            5.5,
+            416,
+            351.2,
+            207.8,
+            7.7,
+            246.9,
+            6.8,
+            357.9,
+            5.2,
+            379.6,
+            3.6,
+            264.6,
+            2.5,
+            296.9,
+            2.4,
+            253.7,
+            34.8,
+            267.4,
+            370.8,
+            6.4,
+            268.5,
+            1.8,
+            333.1,
+            0,
+            358.9,
+            8.9,
+            286.5,
+            274.3,
+            22,
+            145.1,
+            0.9,
+            295,
+            7.3
+          ]
+        },
+        "reconnect": "passed"
+      }
+    ],
+    "validation": {
+      "ok": true,
+      "errors": [],
+      "warnings": [],
+      "findings": [],
+      "manifest": {
+        "entry": "main.js",
+        "name": "Bubble Critter Garden",
+        "description": "One continuous magical bubble garden. Twenty-column pastel board, three replenishing skill bubbles, glossy reflections and textured 3D creatures. Rescue pets without ending play; they wander, eat fallen bubbles, and make bombs after ten meals. Two misses add one row. Mouse/touch, right-click swap, weekly scores.",
+        "maxPlayers": 1,
+        "credits": [
+          {
+            "work": "Original 3D art, procedural textures, music, sound effects and game code",
+            "by": "Garden Pop"
+          }
+        ],
+        "loading": {
+          "background": "#efe5ed",
+          "accent": "#d28ead",
+          "text": "#735367"
+        },
+        "ui": "minimized",
+        "stick": false
+      },
+      "stats": {
+        "files": 49,
+        "bytes": 13356367,
+        "sourceBytes": 120792,
+        "bundleBytes": 200303
+      },
+      "hash": "23769b71cc914f68"
+    },
+    "exteriorUnchanged": true,
+    "equippedAvatarUnchanged": true
+  }
+}

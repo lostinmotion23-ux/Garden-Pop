@@ -1,0 +1,21 @@
+{
+  "verifiedAt": "2026-10-20T23:04:48.521553+00:00",
+  "status": "live",
+  "equippedAvatarUnchanged": false,
+  "lotVersion": "0f2d008c227885da-4dec2914a81eaf1e",
+  "gameVersion": "8fd3edf4fe385243",
+  "protectedSourcesAndAssetsUnchanged": true,
+  "validation": "passed without warnings",
+  "rigTests": "passed both LODs, all clips and normalized skinning",
+  "browserTests": "passed views, clips, blinking, playback, phone and both LODs",
+  "modelHashes": {
+    "avatar.json": "f331d6fb1e1cbb01c21428541972849084495691b0488e04df9f9ed6d57ef8ba",
+    "avatar-lod1.glb": "20bca7988b72aa15d3fe43775b05864fad597b83cb9d2ec284e7c73c93de4781",
+    "avatar.glb": "b5db95b54e72f89c09e39ffe393715583828c6b5d118717cabf1cae28e4e1e68"
+  },
+  "equipped": true,
+  "slot": 1,
+  "submission": 8784,
+  "avatarUrl": "https://files.project0.city/avatars/1248/b0c8cb456555abdf/avatar.glb",
+  "lotAndGameUnchanged": true
+}

@@ -1,0 +1,74 @@
+{
+  "lod0": {
+    "triangles": 19739,
+    "vertices": 11088,
+    "drawCalls": 1,
+    "materials": 1,
+    "textures": 3,
+    "textureSize": 1024,
+    "bones": 22,
+    "skinnedMeshes": 1,
+    "bounds": {
+      "min": [
+        -0.4529256454684341,
+        0.006999999999999999,
+        -0.23481413299254753
+      ],
+      "max": [
+        0.4529256454684341,
+        2.04,
+        0.23097236779081115
+      ]
+    },
+    "clips": [
+      "idle",
+      "fly",
+      "fly_fast",
+      "ascend",
+      "descend",
+      "joy",
+      "approval",
+      "sadness",
+      "indignation",
+      "blink",
+      "look_around"
+    ],
+    "bytes": 2212492
+  },
+  "lod1": {
+    "triangles": 4837,
+    "vertices": 3058,
+    "drawCalls": 1,
+    "materials": 1,
+    "textures": 3,
+    "textureSize": 512,
+    "bones": 22,
+    "skinnedMeshes": 1,
+    "bounds": {
+      "min": [
+        -0.4529256454684341,
+        0.006999999999999999,
+        -0.22842507226575193
+      ],
+      "max": [
+        0.4529256454684341,
+        2.04,
+        0.23097236779081115
+      ]
+    },
+    "clips": [
+      "idle",
+      "fly",
+      "fly_fast",
+      "ascend",
+      "descend",
+      "joy",
+      "approval",
+      "sadness",
+      "indignation",
+      "blink",
+      "look_around"
+    ],
+    "bytes": 739244
+  }
+}

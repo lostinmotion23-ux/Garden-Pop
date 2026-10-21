@@ -1,0 +1,19 @@
+{
+  "entry": "main.js",
+  "name": "Bubble Critter Garden",
+  "description": "A continuous 3D bubble garden with a flower cannon, glossy bubbles, a parchment pet journal and a wooden shelf of animated 3D powers. Textured cherry trees, gently swaying blossoms and warm lanterns frame the unchanged twenty-column board. Rescued pets eat fallen bubbles and earn bombs. Mouse/touch play and right-click color swap.",
+  "maxPlayers": 1,
+  "ui": "minimized",
+  "stick": false,
+  "loading": {
+    "background": "#dcded3",
+    "accent": "#7c906b",
+    "text": "#3e4738"
+  },
+  "credits": [
+    {
+      "work": "Original 3D art, procedural textures, music, sound effects and game code",
+      "by": "Garden Pop"
+    }
+  ]
+}

@@ -1,0 +1,52 @@
+{
+  "name": "Fern · Woodland Fox",
+  "materials": {
+    "*": {
+      "lighting": "standard"
+    }
+  },
+  "motion": {
+    "bank": 0.24,
+    "pitch": 0.17,
+    "bob": 0.025,
+    "bobSpeed": 1.7,
+    "squash": 0.1
+  },
+  "trail": "none",
+  "idle": [
+    {
+      "clip": "blink",
+      "every": [
+        2.5,
+        5
+      ],
+      "overlay": true
+    }
+  ],
+  "emotes": [
+    {
+      "name": "Joy",
+      "clip": "joy",
+      "duration": 2.2
+    },
+    {
+      "name": "Approval",
+      "clip": "approval",
+      "duration": 2
+    },
+    {
+      "name": "Sadness",
+      "clip": "sadness",
+      "duration": 2.6
+    },
+    {
+      "name": "Surprise",
+      "clip": "surprise",
+      "duration": 1.8
+    }
+  ],
+  "reactions": {
+    "pick": "approval",
+    "like": "Joy"
+  }
+}

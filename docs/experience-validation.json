@@ -1,0 +1,32 @@
+{
+  "ok": true,
+  "errors": [],
+  "warnings": [],
+  "findings": [],
+  "manifest": {
+    "entry": "main.js",
+    "name": "Bubble Critter Garden",
+    "description": "Rescue one tiny critter at a time in a pastel 3D bubble shooter. Ten levels, mixed pastel hex rows, seven power-ups, feeding and earned bombs. Two missed matches add a row. Right-click swaps current and next colors. Bigger, sharp text, mouse/touch play, original music and weekly scores. Single-player.",
+    "maxPlayers": 1,
+    "credits": [
+      {
+        "work": "Original 3D art, procedural textures, music, sound effects and game code",
+        "by": "Garden Pop"
+      }
+    ],
+    "loading": {
+      "background": "#efe5ed",
+      "accent": "#d28ead",
+      "text": "#735367"
+    },
+    "ui": "minimized",
+    "stick": false
+  },
+  "stats": {
+    "files": 39,
+    "bytes": 7429894,
+    "sourceBytes": 114154,
+    "bundleBytes": 193557
+  },
+  "hash": "8fd3edf4fe385243"
+}

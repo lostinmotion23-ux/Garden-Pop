@@ -1,0 +1,20 @@
+{
+  "lods": 2,
+  "poses": [
+    "idle",
+    "fly",
+    "joy",
+    "approval",
+    "sadness",
+    "surprise",
+    "blink"
+  ],
+  "blink": {
+    "blink": 0.9470899677498317,
+    "smile": 0.6499999761581421,
+    "textured": true
+  },
+  "phone": true,
+  "errors": [],
+  "missingAssets": []
+}

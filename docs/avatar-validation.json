@@ -1,0 +1,135 @@
+{
+  "ok": true,
+  "errors": [],
+  "warnings": [],
+  "stats": {
+    "bytes": 353104,
+    "triangles": 19050,
+    "drawCalls": 1,
+    "materials": 1,
+    "textures": 3,
+    "maxTextureSize": 1024,
+    "texels": 4194304,
+    "skinnedMeshes": 1,
+    "bones": 22,
+    "animations": 11,
+    "animationNames": [
+      "idle",
+      "fly",
+      "fly_fast",
+      "ascend",
+      "descend",
+      "joy",
+      "approval",
+      "sadness",
+      "indignation",
+      "blink",
+      "look_around"
+    ],
+    "bounds": {
+      "min": [
+        -0.5389999747276306,
+        0.00800000037997961,
+        -0.31343981623649597
+      ],
+      "max": [
+        0.5389999747276306,
+        1.991995930671692,
+        0.26899999380111694
+      ]
+    }
+  },
+  "config": {
+    "name": "Amira \u00b7 Garden Muse",
+    "materials": {
+      "*": {
+        "lighting": "standard"
+      }
+    },
+    "motion": {
+      "bank": 0.22,
+      "pitch": 0.18,
+      "bob": 0.035,
+      "bobSpeed": 1.5,
+      "squash": 0.06
+    },
+    "trail": "none",
+    "emotes": [
+      {
+        "name": "Joy",
+        "clip": "joy",
+        "duration": 2.2
+      },
+      {
+        "name": "Approval",
+        "clip": "approval",
+        "duration": 2.4
+      },
+      {
+        "name": "Sadness",
+        "clip": "sadness",
+        "duration": 2.8
+      },
+      {
+        "name": "Indignation",
+        "clip": "indignation",
+        "duration": 2.4
+      }
+    ],
+    "idle": [
+      {
+        "clip": "blink",
+        "every": [
+          2.5,
+          5
+        ],
+        "overlay": true
+      },
+      {
+        "clip": "look_around",
+        "after": 12
+      }
+    ],
+    "reactions": {
+      "pick": "approval",
+      "like": "Joy"
+    },
+    "lookAt": {
+      "node": "Head",
+      "limit": 32
+    }
+  },
+  "cost": {
+    "customMs": 67.97,
+    "plainMs": 72.93,
+    "ratio": 0.93,
+    "emotes": [
+      {
+        "name": "Joy",
+        "ms": 64.76
+      },
+      {
+        "name": "Approval",
+        "ms": 66.86
+      },
+      {
+        "name": "Sadness",
+        "ms": 67.18
+      },
+      {
+        "name": "Indignation",
+        "ms": 69.24
+      },
+      {
+        "name": "pick",
+        "reaction": true,
+        "ms": 71.68
+      },
+      {
+        "name": "like",
+        "reaction": true,
+        "ms": 76.7
+      }
+    ]
+  }
+}

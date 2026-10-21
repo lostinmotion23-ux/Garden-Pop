@@ -1,0 +1,35 @@
+{
+  "status": "blocked on reference-quality source mesh; no approximation built or published",
+  "avatar": "https://files.project0.city/avatars/1248/b0c8cb456555abdf/avatar.glb",
+  "avatarBudget": {
+    "triangles": 20000,
+    "drawCalls": 6,
+    "materials": 6,
+    "textures": 6,
+    "maxTextureSize": 1024,
+    "texels": 4194304,
+    "skinnedMeshes": 3,
+    "bones": 75,
+    "animations": 24,
+    "fileBytes": 3145728,
+    "uploadBytes": 12582912,
+    "height": 3,
+    "width": 2.5
+  },
+  "lots": [
+    {
+      "id": 3157,
+      "version": "0f2d008c227885da-4dec2914a81eaf1e",
+      "experienceVersion": "8fd3edf4fe385243"
+    }
+  ],
+  "sourceRequestSha256": "58f128dc018c697283aadf874de5e77611d68e680556466732e0ce185624a95f",
+  "brief": "docs/garden-fairy-production-brief.md",
+  "capabilities": {
+    "blender": true,
+    "imageTo3DTool": false,
+    "configured3DService": false,
+    "local3DRuntime": false
+  },
+  "paidCallsMade": 0
+}

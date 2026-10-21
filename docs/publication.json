@@ -1,0 +1,1213 @@
+{
+  "lot": 3157,
+  "name": "Bubble Critter Garden",
+  "displayVersion": "0f2d008c227885da-4dec2914a81eaf1e",
+  "experienceVersion": "14ae33f7a0f52ab1",
+  "verifiedAt": "2026-10-21T07:49:52.085514+00:00",
+  "changes": {
+    "playableLevels": 1,
+    "hexColumns": [
+      20,
+      19
+    ],
+    "initialTrappedAnimals": 0,
+    "maxTrappedAnimals": 1,
+    "animalSpecies": 8,
+    "ordinaryBubbleRadius": 0.1875,
+    "animalProtectiveBubbleRadius": 0.21562499999999998,
+    "missPenaltyRows": 1,
+    "collectiblePowers": 7,
+    "bombFoodPerAnimal": 10,
+    "earnedRescueProgression": true,
+    "fixedCameraInsideLot": true,
+    "opaquePrivateGarden": true,
+    "responsiveMouseAndTouch": true,
+    "originalMusicAndSounds": true,
+    "weeklyScoreIntegration": true,
+    "singlePlayerSessions": true,
+    "missedMatchesPerNewRow": 2,
+    "rightClickSwap": true,
+    "largeCrispHud": true,
+    "bareShooterBall": true,
+    "randomizedColorPatches": true,
+    "petUnlockAddedRows": 0,
+    "persistentFallenFood": true,
+    "foodCreditedOnlyOnActualEating": true,
+    "walkingRescuedPets": true,
+    "bombDropAnimation": true,
+    "mode": "continuous garden",
+    "initialRows": 6,
+    "initialSkillBubbles": 3,
+    "maintainedBoardSkillBubbles": 3,
+    "rescueEndsRun": false,
+    "petsPersistAcrossRefills": true,
+    "refillMovesExistingBubbles": false,
+    "realPbrReflections": true,
+    "surfaceNormalMaps": true,
+    "hdrHighlights": true,
+    "emissiveLanterns": true,
+    "instancedContactShadows": true,
+    "stage1Polish": true,
+    "botanicalGarden": true,
+    "flowerCannon": true,
+    "exactGhostPreview": true,
+    "parchmentRescueCards": true,
+    "animated3dPowerShelf": true,
+    "pooledPopEffects": true,
+    "petChewAndRescueReactions": true,
+    "stage2Implemented": false
+  },
+  "cityAnimation": {
+    "script": true,
+    "cost": {
+      "customMs": 227.13,
+      "plainMs": 241.35,
+      "ratio": 0.94
+    },
+    "warnings": []
+  },
+  "submissions": [
+    {
+      "id": 8719,
+      "kind": "lot",
+      "lot": 3157,
+      "status": "live",
+      "reasons": [],
+      "categories": [],
+      "warnings": [],
+      "created": 1792533284541
+    },
+    {
+      "id": 9001,
+      "kind": "experience",
+      "lot": 3157,
+      "status": "live",
+      "reasons": [],
+      "categories": [],
+      "warnings": [],
+      "created": 1792568914836
+    }
+  ],
+  "supersededDuringDevelopment": {
+    "experienceSubmission": 8556,
+    "reason": "Replaced by 8560 to reset cached animal visibility after title mascots are hidden."
+  },
+  "exterior": {
+    "lot": 3157,
+    "dimensions": [
+      12,
+      19,
+      12
+    ],
+    "design": "Miniature magical arcade pavilion",
+    "board": {
+      "columns": [
+        25,
+        24
+      ],
+      "rows": 17,
+      "radius": 0.16,
+      "colors": [
+        "#f29bc4",
+        "#b5a0ea",
+        "#8fcfee",
+        "#f2d589",
+        "#9dd4b1"
+      ],
+      "realSpheres": 321
+    },
+    "animals": [
+      {
+        "kind": "bunny",
+        "name": "Mochi",
+        "position": [
+          -3.9,
+          1.58,
+          3.0
+        ],
+        "radius": 0.63
+      },
+      {
+        "kind": "fox",
+        "name": "Clementine",
+        "position": [
+          -2.5999999999999996,
+          1.58,
+          3.0
+        ],
+        "radius": 0.63
+      },
+      {
+        "kind": "kitten",
+        "name": "Clover",
+        "position": [
+          -1.2999999999999998,
+          1.58,
+          3.0
+        ],
+        "radius": 0.63
+      },
+      {
+        "kind": "bird",
+        "name": "Pip",
+        "position": [
+          4.440892098500626e-16,
+          1.58,
+          3.0
+        ],
+        "radius": 0.63
+      },
+      {
+        "kind": "deer",
+        "name": "Fern",
+        "position": [
+          1.3000000000000003,
+          1.58,
+          3.0
+        ],
+        "radius": 0.63
+      },
+      {
+        "kind": "bear",
+        "name": "Maple",
+        "position": [
+          2.6,
+          1.58,
+          3.0
+        ],
+        "radius": 0.63
+      },
+      {
+        "kind": "axolotl",
+        "name": "Petal",
+        "position": [
+          3.900000000000001,
+          1.58,
+          3.0
+        ],
+        "radius": 0.63
+      }
+    ],
+    "decorativeAnimalBubbles": 2,
+    "maxHeight": 11.0
+  },
+  "box": {
+    "mode": "subtle",
+    "color": "#d6a9c7"
+  },
+  "exteriorVerification": "exterior-verification.json",
+  "exteriorComparison": "exterior-comparison.md",
+  "animalArt": "animated-animal-art.md",
+  "previous": {
+    "lot": 3157,
+    "name": "Bubble Critter Garden",
+    "displayVersion": "0f2d008c227885da-4dec2914a81eaf1e",
+    "experienceVersion": "23769b71cc914f68",
+    "verifiedAt": "2026-10-21T06:05:15.205077+00:00",
+    "changes": {
+      "playableLevels": 1,
+      "hexColumns": [
+        20,
+        19
+      ],
+      "initialTrappedAnimals": 0,
+      "maxTrappedAnimals": 1,
+      "animalSpecies": 8,
+      "ordinaryBubbleRadius": 0.1875,
+      "animalProtectiveBubbleRadius": 0.21562499999999998,
+      "missPenaltyRows": 1,
+      "collectiblePowers": 7,
+      "bombFoodPerAnimal": 10,
+      "earnedRescueProgression": true,
+      "fixedCameraInsideLot": true,
+      "opaquePrivateGarden": true,
+      "responsiveMouseAndTouch": true,
+      "originalMusicAndSounds": true,
+      "weeklyScoreIntegration": true,
+      "singlePlayerSessions": true,
+      "missedMatchesPerNewRow": 2,
+      "rightClickSwap": true,
+      "largeCrispHud": true,
+      "bareShooterBall": true,
+      "randomizedColorPatches": true,
+      "petUnlockAddedRows": 0,
+      "persistentFallenFood": true,
+      "foodCreditedOnlyOnActualEating": true,
+      "walkingRescuedPets": true,
+      "bombDropAnimation": true,
+      "mode": "continuous garden",
+      "initialRows": 6,
+      "initialSkillBubbles": 3,
+      "maintainedBoardSkillBubbles": 3,
+      "rescueEndsRun": false,
+      "petsPersistAcrossRefills": true,
+      "refillMovesExistingBubbles": false,
+      "realPbrReflections": true,
+      "surfaceNormalMaps": true,
+      "hdrHighlights": true,
+      "emissiveLanterns": true,
+      "instancedContactShadows": true,
+      "stage1Polish": true,
+      "botanicalGarden": true,
+      "flowerCannon": true,
+      "exactGhostPreview": true,
+      "parchmentRescueCards": true,
+      "animated3dPowerShelf": true,
+      "pooledPopEffects": true,
+      "petChewAndRescueReactions": true,
+      "stage2Implemented": false
+    },
+    "cityAnimation": {
+      "script": true,
+      "cost": {
+        "customMs": 227.13,
+        "plainMs": 241.35,
+        "ratio": 0.94
+      },
+      "warnings": []
+    },
+    "submissions": [
+      {
+        "id": 8719,
+        "kind": "lot",
+        "lot": 3157,
+        "status": "live",
+        "reasons": [],
+        "categories": [],
+        "warnings": [],
+        "created": 1792533284541
+      },
+      {
+        "id": 8959,
+        "kind": "experience",
+        "lot": 3157,
+        "status": "live",
+        "reasons": [],
+        "categories": [],
+        "warnings": [],
+        "created": 1792562643378
+      }
+    ],
+    "supersededDuringDevelopment": {
+      "experienceSubmission": 8556,
+      "reason": "Replaced by 8560 to reset cached animal visibility after title mascots are hidden."
+    },
+    "previous": {
+      "lot": 3157,
+      "name": "Bubble Critter Garden",
+      "displayVersion": "0f2d008c227885da-4dec2914a81eaf1e",
+      "experienceVersion": "3820a7775dec8b32",
+      "verifiedAt": "2026-10-21T05:36:14.088175+00:00",
+      "changes": {
+        "playableLevels": 10,
+        "hexColumns": [
+          25,
+          24
+        ],
+        "initialOrdinaryRows": 6,
+        "initialTrappedAnimals": 0,
+        "maxTrappedAnimals": 1,
+        "animalSpecies": 8,
+        "ordinaryBubbleRadius": 0.15,
+        "animalProtectiveBubbleRadius": 0.174,
+        "missPenaltyRows": 1,
+        "collectiblePowers": 7,
+        "bombFoodPerAnimal": 10,
+        "earnedRescueProgression": true,
+        "fixedCameraInsideLot": true,
+        "opaquePrivateGarden": true,
+        "responsiveMouseAndTouch": true,
+        "originalMusicAndSounds": true,
+        "weeklyScoreIntegration": true,
+        "singlePlayerSessions": true,
+        "missedMatchesPerNewRow": 2,
+        "rightClickSwap": true,
+        "largeCrispHud": true,
+        "bareShooterBall": true,
+        "randomizedColorPatches": true,
+        "petUnlockAddedRows": 0,
+        "persistentFallenFood": true,
+        "foodCreditedOnlyOnActualEating": true,
+        "walkingRescuedPets": true,
+        "bombDropAnimation": true
+      },
+      "cityAnimation": {
+        "script": true,
+        "cost": {
+          "customMs": 227.13,
+          "plainMs": 241.35,
+          "ratio": 0.94
+        },
+        "warnings": []
+      },
+      "submissions": [
+        {
+          "id": 8719,
+          "kind": "lot",
+          "lot": 3157,
+          "status": "live",
+          "reasons": [],
+          "categories": [],
+          "warnings": [],
+          "created": 1792533284541
+        },
+        {
+          "id": 8947,
+          "kind": "experience",
+          "lot": 3157,
+          "status": "live",
+          "reasons": [],
+          "categories": [],
+          "warnings": [],
+          "created": 1792560845735
+        }
+      ],
+      "supersededDuringDevelopment": {
+        "experienceSubmission": 8556,
+        "reason": "Replaced by 8560 to reset cached animal visibility after title mascots are hidden."
+      },
+      "previous": {
+        "lot": 3157,
+        "name": "Bubble Critter Garden",
+        "displayVersion": "0f2d008c227885da-4dec2914a81eaf1e",
+        "experienceVersion": "8fd3edf4fe385243",
+        "verifiedAt": "2026-10-20T21:57:16.600811+00:00",
+        "changes": {
+          "playableLevels": 10,
+          "hexColumns": [
+            25,
+            24
+          ],
+          "initialOrdinaryRows": 6,
+          "initialTrappedAnimals": 0,
+          "maxTrappedAnimals": 1,
+          "animalSpecies": 8,
+          "ordinaryBubbleRadius": 0.15,
+          "animalProtectiveBubbleRadius": 0.174,
+          "missPenaltyRows": 1,
+          "collectiblePowers": 7,
+          "bombFoodPerAnimal": 10,
+          "earnedRescueProgression": true,
+          "fixedCameraInsideLot": true,
+          "opaquePrivateGarden": true,
+          "responsiveMouseAndTouch": true,
+          "originalMusicAndSounds": true,
+          "weeklyScoreIntegration": true,
+          "singlePlayerSessions": true,
+          "missedMatchesPerNewRow": 2,
+          "rightClickSwap": true,
+          "largeCrispHud": true,
+          "bareShooterBall": true,
+          "randomizedColorPatches": true
+        },
+        "cityAnimation": {
+          "script": true,
+          "cost": {
+            "customMs": 227.13,
+            "plainMs": 241.35,
+            "ratio": 0.94
+          },
+          "warnings": []
+        },
+        "submissions": [
+          {
+            "id": 8719,
+            "kind": "lot",
+            "lot": 3157,
+            "status": "live",
+            "reasons": [],
+            "categories": [],
+            "warnings": [],
+            "created": 1792533284541
+          },
+          {
+            "id": 8722,
+            "kind": "experience",
+            "lot": 3157,
+            "status": "live",
+            "reasons": [],
+            "categories": [],
+            "warnings": [],
+            "created": 1792533349576
+          }
+        ],
+        "supersededDuringDevelopment": {
+          "experienceSubmission": 8556,
+          "reason": "Replaced by 8560 to reset cached animal visibility after title mascots are hidden."
+        },
+        "previous": {
+          "lot": 3157,
+          "name": "Bubble Critter Garden",
+          "displayVersion": "abe27524ae2471f9-2e5860076a00843b",
+          "experienceVersion": "e6e2a5eae73d2059",
+          "verifiedAt": "2026-10-20T21:07:11.516582+00:00",
+          "changes": {
+            "playableLevels": 10,
+            "hexColumns": [
+              25,
+              24
+            ],
+            "initialOrdinaryRows": 6,
+            "initialTrappedAnimals": 0,
+            "maxTrappedAnimals": 1,
+            "animalSpecies": 8,
+            "ordinaryBubbleRadius": 0.15,
+            "animalProtectiveBubbleRadius": 0.174,
+            "missPenaltyRows": 1,
+            "collectiblePowers": 7,
+            "bombFoodPerAnimal": 10,
+            "earnedRescueProgression": true,
+            "fixedCameraInsideLot": true,
+            "opaquePrivateGarden": true,
+            "responsiveMouseAndTouch": true,
+            "originalMusicAndSounds": true,
+            "weeklyScoreIntegration": true,
+            "singlePlayerSessions": true,
+            "missedMatchesPerNewRow": 2,
+            "rightClickSwap": true,
+            "largeCrispHud": true,
+            "bareShooterBall": true,
+            "randomizedColorPatches": true
+          },
+          "cityAnimation": {
+            "script": true,
+            "cost": {
+              "customMs": 195.83,
+              "plainMs": 187.55,
+              "ratio": 1.04
+            },
+            "warnings": []
+          },
+          "submissions": [
+            {
+              "id": 8684,
+              "kind": "lot",
+              "lot": 3157,
+              "status": "live",
+              "reasons": [],
+              "categories": [],
+              "warnings": [],
+              "created": 1792530269385
+            },
+            {
+              "id": 8679,
+              "kind": "experience",
+              "lot": 3157,
+              "status": "live",
+              "reasons": [],
+              "categories": [],
+              "warnings": [],
+              "created": 1792529767405
+            }
+          ],
+          "supersededDuringDevelopment": {
+            "experienceSubmission": 8556,
+            "reason": "Replaced by 8560 to reset cached animal visibility after title mascots are hidden."
+          },
+          "previous": {
+            "lot": 3157,
+            "name": "Bubble Critter Garden",
+            "displayVersion": "4fcab40b8e3392f1-abecde30117a5906",
+            "experienceVersion": "e6e2a5eae73d2059",
+            "verifiedAt": "2026-10-20T19:23:32.675368+00:00",
+            "changes": {
+              "playableLevels": 10,
+              "hexColumns": [
+                25,
+                24
+              ],
+              "initialOrdinaryRows": 6,
+              "initialTrappedAnimals": 0,
+              "maxTrappedAnimals": 1,
+              "animalSpecies": 8,
+              "ordinaryBubbleRadius": 0.15,
+              "animalProtectiveBubbleRadius": 0.174,
+              "missPenaltyRows": 1,
+              "collectiblePowers": 7,
+              "bombFoodPerAnimal": 10,
+              "earnedRescueProgression": true,
+              "fixedCameraInsideLot": true,
+              "opaquePrivateGarden": true,
+              "responsiveMouseAndTouch": true,
+              "originalMusicAndSounds": true,
+              "weeklyScoreIntegration": true,
+              "singlePlayerSessions": true,
+              "missedMatchesPerNewRow": 2,
+              "rightClickSwap": true,
+              "largeCrispHud": true,
+              "bareShooterBall": true,
+              "randomizedColorPatches": true
+            },
+            "cityAnimation": {
+              "script": true,
+              "cost": {
+                "customMs": 81.43,
+                "plainMs": 77.61,
+                "ratio": 1.05
+              },
+              "warnings": []
+            },
+            "submissions": [
+              {
+                "id": 8480,
+                "kind": "lot",
+                "lot": 3157,
+                "status": "live",
+                "reasons": [],
+                "categories": [],
+                "warnings": [],
+                "created": 1792520651770
+              },
+              {
+                "id": 8679,
+                "kind": "experience",
+                "lot": 3157,
+                "status": "live",
+                "reasons": [],
+                "categories": [],
+                "warnings": [],
+                "created": 1792529767405
+              }
+            ],
+            "supersededDuringDevelopment": {
+              "experienceSubmission": 8556,
+              "reason": "Replaced by 8560 to reset cached animal visibility after title mascots are hidden."
+            },
+            "previous": {
+              "lot": 3157,
+              "name": "Bubble Critter Garden",
+              "displayVersion": "4fcab40b8e3392f1-abecde30117a5906",
+              "experienceVersion": "e96d0a9b2ada7273",
+              "verifiedAt": "2026-10-20T19:23:32.675368+00:00",
+              "changes": {
+                "playableLevels": 10,
+                "hexColumns": [
+                  25,
+                  24
+                ],
+                "initialOrdinaryRows": 6,
+                "initialTrappedAnimals": 0,
+                "maxTrappedAnimals": 1,
+                "animalSpecies": 8,
+                "ordinaryBubbleRadius": 0.15,
+                "animalProtectiveBubbleRadius": 0.174,
+                "missPenaltyRows": 1,
+                "collectiblePowers": 7,
+                "bombFoodPerAnimal": 10,
+                "earnedRescueProgression": true,
+                "fixedCameraInsideLot": true,
+                "opaquePrivateGarden": true,
+                "responsiveMouseAndTouch": true,
+                "originalMusicAndSounds": true,
+                "weeklyScoreIntegration": true,
+                "singlePlayerSessions": true
+              },
+              "cityAnimation": {
+                "script": true,
+                "cost": {
+                  "customMs": 81.43,
+                  "plainMs": 77.61,
+                  "ratio": 1.05
+                },
+                "warnings": []
+              },
+              "submissions": [
+                {
+                  "id": 8480,
+                  "kind": "lot",
+                  "lot": 3157,
+                  "status": "live",
+                  "reasons": [],
+                  "categories": [],
+                  "warnings": [],
+                  "created": 1792520651770
+                },
+                {
+                  "id": 8560,
+                  "kind": "experience",
+                  "lot": 3157,
+                  "status": "live",
+                  "reasons": [],
+                  "categories": [],
+                  "warnings": [],
+                  "created": 1792524152602
+                }
+              ],
+              "supersededDuringDevelopment": {
+                "experienceSubmission": 8556,
+                "reason": "Replaced by 8560 to reset cached animal visibility after title mascots are hidden."
+              },
+              "previous": {
+                "lot": 3157,
+                "name": "Garden Pop",
+                "displayVersion": "4fcab40b8e3392f1-abecde30117a5906",
+                "experienceVersion": "0f447bc326db27a6",
+                "verifiedAt": "2026-10-20T18:26:06.480760+00:00",
+                "changes": {
+                  "maxAnimalBubbles": 1,
+                  "animal": "Mochi the baby bunny",
+                  "animalBubbleRadius": 0.45,
+                  "smallBubbleRadius": 0.18,
+                  "solidPastelBubbles": 179,
+                  "connectedNonOverlappingPacking": true,
+                  "opaquePrivateGarden": true,
+                  "cameraAlwaysInsideLot": true,
+                  "rowIntervalSeconds": 45
+                },
+                "cityAnimation": {
+                  "script": true,
+                  "cost": {
+                    "customMs": 81.43,
+                    "plainMs": 77.61,
+                    "ratio": 1.05
+                  },
+                  "warnings": []
+                },
+                "submissions": [
+                  {
+                    "id": 8480,
+                    "kind": "lot",
+                    "lot": 3157,
+                    "status": "live",
+                    "reasons": [],
+                    "categories": [],
+                    "warnings": [],
+                    "created": 1792520651770
+                  },
+                  {
+                    "id": 8481,
+                    "kind": "experience",
+                    "lot": 3157,
+                    "status": "live",
+                    "reasons": [],
+                    "categories": [],
+                    "warnings": [],
+                    "created": 1792520694031
+                  }
+                ],
+                "previous": {
+                  "lot": 3157,
+                  "name": "Garden Pop",
+                  "displayVersion": "777709daae84d9f8-f0bd42dfb9580a53",
+                  "experienceVersion": "eaef41b5349398f9",
+                  "verifiedAt": "2026-10-20T18:20:25.475875+00:00",
+                  "changes": {
+                    "smallBubbleRadius": 0.18,
+                    "animalBubbleRadius": 0.54,
+                    "touchingSolidBubbles": 155,
+                    "animals": 5,
+                    "connectedNonOverlappingPacking": true,
+                    "opaquePrivateGarden": true,
+                    "extendedMeadowRadius": 44,
+                    "cameraAlwaysInsideLot": true,
+                    "minimizedCityPanels": true,
+                    "rowIntervalSeconds": 45
+                  },
+                  "cityAnimation": {
+                    "script": true,
+                    "cost": {
+                      "customMs": 88.02,
+                      "plainMs": 85.76,
+                      "ratio": 1.03
+                    },
+                    "warnings": []
+                  },
+                  "submissions": [
+                    {
+                      "id": 8469,
+                      "kind": "lot",
+                      "lot": 3157,
+                      "status": "live",
+                      "reasons": [],
+                      "categories": [],
+                      "warnings": [],
+                      "created": 1792520255256
+                    },
+                    {
+                      "id": 8472,
+                      "kind": "experience",
+                      "lot": 3157,
+                      "status": "live",
+                      "reasons": [],
+                      "categories": [],
+                      "warnings": [],
+                      "created": 1792520308150
+                    }
+                  ],
+                  "previous": {
+                    "lot": 3157,
+                    "name": "Garden Pop",
+                    "displayVersion": "78871548e8fa0885-021d9466b4c4b8e7",
+                    "experienceVersion": "7cfdc6091ea7ca75",
+                    "verifiedAt": "2026-10-20T17:48:45.543208+00:00",
+                    "changes": {
+                      "animalHeightsHalved": true,
+                      "solidPastelBubbles": 96,
+                      "rowIntervalSeconds": 45,
+                      "groundFadeAndRecycle": true
+                    },
+                    "cityAnimation": {
+                      "script": true,
+                      "cost": {
+                        "customMs": 118.18,
+                        "plainMs": 121.22,
+                        "ratio": 0.97
+                      },
+                      "warnings": []
+                    },
+                    "submissions": [
+                      {
+                        "id": 8422,
+                        "kind": "lot",
+                        "lot": 3157,
+                        "status": "live",
+                        "reasons": [],
+                        "categories": [],
+                        "warnings": [],
+                        "created": 1792518429487
+                      },
+                      {
+                        "id": 8424,
+                        "kind": "experience",
+                        "lot": 3157,
+                        "status": "live",
+                        "reasons": [],
+                        "categories": [],
+                        "warnings": [],
+                        "created": 1792518472732
+                      }
+                    ],
+                    "previous": {
+                      "lot": 3157,
+                      "name": "Garden Pop",
+                      "displayVersion": "2cdb55622303f603",
+                      "experienceVersion": "779a65a16bdcfa88",
+                      "verifiedAt": "2026-10-20T17:33:13.052106+00:00",
+                      "submissions": [
+                        {
+                          "id": 8403,
+                          "kind": "lot",
+                          "lot": 3157,
+                          "status": "live",
+                          "reasons": [],
+                          "categories": [],
+                          "warnings": [],
+                          "created": 1792517522561
+                        },
+                        {
+                          "id": 8404,
+                          "kind": "experience",
+                          "lot": 3157,
+                          "status": "live",
+                          "reasons": [],
+                          "categories": [],
+                          "warnings": [],
+                          "created": 1792517543756
+                        }
+                      ]
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "exterior": {
+            "lot": 3157,
+            "dimensions": [
+              12,
+              19,
+              12
+            ],
+            "design": "Miniature magical arcade pavilion",
+            "board": {
+              "columns": [
+                25,
+                24
+              ],
+              "rows": 17,
+              "radius": 0.16,
+              "colors": [
+                "#f29bc4",
+                "#b5a0ea",
+                "#8fcfee",
+                "#f2d589",
+                "#9dd4b1"
+              ],
+              "realSpheres": 321
+            },
+            "animals": [
+              {
+                "kind": "bunny",
+                "name": "Mochi",
+                "position": [
+                  -2.95,
+                  1.65,
+                  2.7
+                ],
+                "radius": 0.72
+              },
+              {
+                "kind": "fox",
+                "name": "Clementine",
+                "position": [
+                  -1.25,
+                  1.65,
+                  2.9
+                ],
+                "radius": 0.72
+              },
+              {
+                "kind": "kitten",
+                "name": "Clover",
+                "position": [
+                  1.45,
+                  1.65,
+                  2.75
+                ],
+                "radius": 0.72
+              },
+              {
+                "kind": "bird",
+                "name": "Pip",
+                "position": [
+                  3.05,
+                  1.63,
+                  2.65
+                ],
+                "radius": 0.72
+              }
+            ],
+            "decorativeAnimalBubbles": 2,
+            "maxHeight": 11.0
+          },
+          "box": {
+            "mode": "subtle",
+            "color": "#d6a9c7"
+          },
+          "exteriorVerification": "exterior-verification.json",
+          "exteriorComparison": "exterior-comparison.md"
+        },
+        "exterior": {
+          "lot": 3157,
+          "dimensions": [
+            12,
+            19,
+            12
+          ],
+          "design": "Miniature magical arcade pavilion",
+          "board": {
+            "columns": [
+              25,
+              24
+            ],
+            "rows": 17,
+            "radius": 0.16,
+            "colors": [
+              "#f29bc4",
+              "#b5a0ea",
+              "#8fcfee",
+              "#f2d589",
+              "#9dd4b1"
+            ],
+            "realSpheres": 321
+          },
+          "animals": [
+            {
+              "kind": "bunny",
+              "name": "Mochi",
+              "position": [
+                -3.9,
+                1.58,
+                3.0
+              ],
+              "radius": 0.63
+            },
+            {
+              "kind": "fox",
+              "name": "Clementine",
+              "position": [
+                -2.5999999999999996,
+                1.58,
+                3.0
+              ],
+              "radius": 0.63
+            },
+            {
+              "kind": "kitten",
+              "name": "Clover",
+              "position": [
+                -1.2999999999999998,
+                1.58,
+                3.0
+              ],
+              "radius": 0.63
+            },
+            {
+              "kind": "bird",
+              "name": "Pip",
+              "position": [
+                4.440892098500626e-16,
+                1.58,
+                3.0
+              ],
+              "radius": 0.63
+            },
+            {
+              "kind": "deer",
+              "name": "Fern",
+              "position": [
+                1.3000000000000003,
+                1.58,
+                3.0
+              ],
+              "radius": 0.63
+            },
+            {
+              "kind": "bear",
+              "name": "Maple",
+              "position": [
+                2.6,
+                1.58,
+                3.0
+              ],
+              "radius": 0.63
+            },
+            {
+              "kind": "axolotl",
+              "name": "Petal",
+              "position": [
+                3.900000000000001,
+                1.58,
+                3.0
+              ],
+              "radius": 0.63
+            }
+          ],
+          "decorativeAnimalBubbles": 2,
+          "maxHeight": 11.0
+        },
+        "box": {
+          "mode": "subtle",
+          "color": "#d6a9c7"
+        },
+        "exteriorVerification": "exterior-verification.json",
+        "exteriorComparison": "exterior-comparison.md",
+        "animalArt": "animated-animal-art.md"
+      },
+      "exterior": {
+        "lot": 3157,
+        "dimensions": [
+          12,
+          19,
+          12
+        ],
+        "design": "Miniature magical arcade pavilion",
+        "board": {
+          "columns": [
+            25,
+            24
+          ],
+          "rows": 17,
+          "radius": 0.16,
+          "colors": [
+            "#f29bc4",
+            "#b5a0ea",
+            "#8fcfee",
+            "#f2d589",
+            "#9dd4b1"
+          ],
+          "realSpheres": 321
+        },
+        "animals": [
+          {
+            "kind": "bunny",
+            "name": "Mochi",
+            "position": [
+              -3.9,
+              1.58,
+              3.0
+            ],
+            "radius": 0.63
+          },
+          {
+            "kind": "fox",
+            "name": "Clementine",
+            "position": [
+              -2.5999999999999996,
+              1.58,
+              3.0
+            ],
+            "radius": 0.63
+          },
+          {
+            "kind": "kitten",
+            "name": "Clover",
+            "position": [
+              -1.2999999999999998,
+              1.58,
+              3.0
+            ],
+            "radius": 0.63
+          },
+          {
+            "kind": "bird",
+            "name": "Pip",
+            "position": [
+              4.440892098500626e-16,
+              1.58,
+              3.0
+            ],
+            "radius": 0.63
+          },
+          {
+            "kind": "deer",
+            "name": "Fern",
+            "position": [
+              1.3000000000000003,
+              1.58,
+              3.0
+            ],
+            "radius": 0.63
+          },
+          {
+            "kind": "bear",
+            "name": "Maple",
+            "position": [
+              2.6,
+              1.58,
+              3.0
+            ],
+            "radius": 0.63
+          },
+          {
+            "kind": "axolotl",
+            "name": "Petal",
+            "position": [
+              3.900000000000001,
+              1.58,
+              3.0
+            ],
+            "radius": 0.63
+          }
+        ],
+        "decorativeAnimalBubbles": 2,
+        "maxHeight": 11.0
+      },
+      "box": {
+        "mode": "subtle",
+        "color": "#d6a9c7"
+      },
+      "exteriorVerification": "exterior-verification.json",
+      "exteriorComparison": "exterior-comparison.md",
+      "animalArt": "animated-animal-art.md"
+    },
+    "exterior": {
+      "lot": 3157,
+      "dimensions": [
+        12,
+        19,
+        12
+      ],
+      "design": "Miniature magical arcade pavilion",
+      "board": {
+        "columns": [
+          25,
+          24
+        ],
+        "rows": 17,
+        "radius": 0.16,
+        "colors": [
+          "#f29bc4",
+          "#b5a0ea",
+          "#8fcfee",
+          "#f2d589",
+          "#9dd4b1"
+        ],
+        "realSpheres": 321
+      },
+      "animals": [
+        {
+          "kind": "bunny",
+          "name": "Mochi",
+          "position": [
+            -3.9,
+            1.58,
+            3.0
+          ],
+          "radius": 0.63
+        },
+        {
+          "kind": "fox",
+          "name": "Clementine",
+          "position": [
+            -2.5999999999999996,
+            1.58,
+            3.0
+          ],
+          "radius": 0.63
+        },
+        {
+          "kind": "kitten",
+          "name": "Clover",
+          "position": [
+            -1.2999999999999998,
+            1.58,
+            3.0
+          ],
+          "radius": 0.63
+        },
+        {
+          "kind": "bird",
+          "name": "Pip",
+          "position": [
+            4.440892098500626e-16,
+            1.58,
+            3.0
+          ],
+          "radius": 0.63
+        },
+        {
+          "kind": "deer",
+          "name": "Fern",
+          "position": [
+            1.3000000000000003,
+            1.58,
+            3.0
+          ],
+          "radius": 0.63
+        },
+        {
+          "kind": "bear",
+          "name": "Maple",
+          "position": [
+            2.6,
+            1.58,
+            3.0
+          ],
+          "radius": 0.63
+        },
+        {
+          "kind": "axolotl",
+          "name": "Petal",
+          "position": [
+            3.900000000000001,
+            1.58,
+            3.0
+          ],
+          "radius": 0.63
+        }
+      ],
+      "decorativeAnimalBubbles": 2,
+      "maxHeight": 11.0
+    },
+    "box": {
+      "mode": "subtle",
+      "color": "#d6a9c7"
+    },
+    "exteriorVerification": "exterior-verification.json",
+    "exteriorComparison": "exterior-comparison.md",
+    "animalArt": "animated-animal-art.md"
+  },
+  "stage1Report": "game-stage1-polish.md",
+  "stage1Verification": "game-stage1-verification.json"
+}

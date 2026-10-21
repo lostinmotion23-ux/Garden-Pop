@@ -1,0 +1,60 @@
+{
+  "name": "Amira \u00b7 Garden Muse II",
+  "materials": {
+    "*": {
+      "lighting": "standard"
+    }
+  },
+  "motion": {
+    "bank": 0.22,
+    "pitch": 0.18,
+    "bob": 0.035,
+    "bobSpeed": 1.5,
+    "squash": 0.06
+  },
+  "trail": "none",
+  "idle": [
+    {
+      "clip": "blink",
+      "every": [
+        2.5,
+        5.0
+      ],
+      "overlay": true
+    },
+    {
+      "clip": "look_around",
+      "after": 12
+    }
+  ],
+  "emotes": [
+    {
+      "name": "Joy",
+      "clip": "joy",
+      "duration": 2.2
+    },
+    {
+      "name": "Approval",
+      "clip": "approval",
+      "duration": 2.4
+    },
+    {
+      "name": "Sadness",
+      "clip": "sadness",
+      "duration": 2.8
+    },
+    {
+      "name": "Indignation",
+      "clip": "indignation",
+      "duration": 2.4
+    }
+  ],
+  "reactions": {
+    "pick": "approval",
+    "like": "Joy"
+  },
+  "lookAt": {
+    "node": "Head",
+    "limit": 32
+  }
+}

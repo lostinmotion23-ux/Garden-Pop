@@ -1,0 +1,16 @@
+{
+  "views": [
+    "front",
+    "three-quarter",
+    "side",
+    "back",
+    "face"
+  ],
+  "clips": 11,
+  "lods": 2,
+  "blink": "passed",
+  "playback": "passed",
+  "phone": "passed",
+  "errors": [],
+  "bad": []
+}

@@ -1,0 +1,40 @@
+{
+  "name": "garden-pop",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "vite --host 0.0.0.0",
+    "build": "node scripts/sync-experience.mjs && vite build",
+    "models": "python3 scripts/create-exterior-textures.py && python3 scripts/create-animal-textures.py && XDG_CONFIG_HOME=/workspace/.cache/config blender --background --factory-startup --threads 2 --python scripts/build_exterior.py",
+    "check:models": "node scripts/check-models.mjs",
+    "check:browser": "node scripts/check-browser.mjs",
+    "check:devkit": "node scripts/check-game-devkit.mjs",
+    "check:flow": "node scripts/check-flow.mjs",
+    "check:camera": "node scripts/check-camera.mjs",
+    "check:game": "node scripts/check-game.mjs",
+    "check:game:browser": "node scripts/check-game-browser.mjs",
+    "game:assets": "python3 scripts/create-game-assets.py && python3 scripts/create-garden-surfaces.py && python3 scripts/create-botanical-assets.py",
+    "check:art": "node scripts/check-art.mjs",
+    "animal:assets": "python3 scripts/create-animal-textures.py && XDG_CONFIG_HOME=/workspace/.cache/config blender --background --factory-startup --threads 2 --python scripts/build_animal_pack.py",
+    "check:game:ground": "node scripts/check-ground-browser.mjs",
+    "game:surfaces": "python3 scripts/create-garden-surfaces.py",
+    "game:botanical-assets": "python3 scripts/create-botanical-assets.py",
+    "check:game:botanical": "node scripts/check-botanical-browser.mjs",
+    "render:game:botanical": "node scripts/render-botanical-previews.mjs",
+    "check:game:polish": "node scripts/check-stage1-polish.mjs",
+    "check:game:layout": "node scripts/check-stage1-layout.mjs",
+    "render:game:polish": "node scripts/render-stage1-previews.mjs",
+    "check:game:stage2": "node scripts/check-stage2.mjs",
+    "game:stage2-assets": "python3 scripts/create-stage2-assets.py"
+  },
+  "dependencies": {
+    "@fontsource-variable/dm-sans": "5.3.0",
+    "@fontsource-variable/manrope": "5.3.0",
+    "three": "0.186.1"
+  },
+  "devDependencies": {
+    "@playwright/test": "1.64.1",
+    "vite": "8.3.4"
+  }
+}

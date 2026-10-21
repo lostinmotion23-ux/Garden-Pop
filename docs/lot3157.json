@@ -1,0 +1,51 @@
+{
+  "id": 3157,
+  "name": null,
+  "width": 12,
+  "depth": 12,
+  "height": 19,
+  "shape": "tower",
+  "tier": "small",
+  "budgets": {
+    "lod0": {
+      "triangles": 70000,
+      "drawCalls": 14,
+      "materials": 4,
+      "textures": 8,
+      "maxTextureSize": 1024,
+      "texels": 8388608,
+      "skinnedMeshes": 2,
+      "bones": 64,
+      "animations": 8,
+      "fileBytes": 5242880,
+      "uploadBytes": 26214400
+    },
+    "lod1": {
+      "triangles": 10000,
+      "drawCalls": 4,
+      "materials": 2,
+      "textures": 2,
+      "maxTextureSize": 512,
+      "texels": 734003.2,
+      "skinnedMeshes": 0,
+      "bones": 0,
+      "animations": 0,
+      "fileBytes": 1048576,
+      "uploadBytes": 8388608
+    },
+    "lod2": {
+      "triangles": 1000,
+      "drawCalls": 1,
+      "materials": 1,
+      "textures": 1,
+      "maxTextureSize": 256,
+      "texels": 94371.84,
+      "skinnedMeshes": 0,
+      "bones": 0,
+      "animations": 0,
+      "fileBytes": 209715.2,
+      "uploadBytes": 2097152
+    }
+  },
+  "altitude": 0
+}
