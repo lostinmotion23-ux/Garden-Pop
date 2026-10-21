@@ -1,6 +1,7 @@
 import * as T from 'three';
 import { mergeGeometries } from 'three/addons/utils/BufferGeometryUtils.js';
 import { rng } from './rules.js';
+import { buildCourtyard } from './courtyard.js';
 
 // True curved petal/leaf surfaces, tapered branches and instanced blossoms.
 // No canopy blobs, scenery photographs or flower billboards.
@@ -61,17 +62,8 @@ export function buildBotanicalGarden(art, scene) {
     place(centers,[p[0],p[1],p[2]+.018],size*.15);
   };
   // A private, fully modelled garden remains behind the playfield.
-  scene.background=new T.Color('#cbd8d7');scene.fog=new T.Fog('#c9d6c7',18,40);
-  const skyGeo=new T.SphereGeometry(48,16,10),skyColors=[],low=new T.Color('#d4e2d6'),high=new T.Color('#8bb8ca');
-  for(let i=0;i<skyGeo.attributes.position.count;i++) {
-    const t=T.MathUtils.clamp((skyGeo.attributes.position.getY(i)+4)/30,0,1);
-    const c=low.clone().lerp(high,t);skyColors.push(c.r,c.g,c.b);
-  }
-  skyGeo.setAttribute('color',new T.Float32BufferAttribute(skyColors,3));
-  const sky=new T.Mesh(skyGeo,new T.MeshBasicMaterial({vertexColors:true,side:T.BackSide,toneMapped:false,fog:false}));scene.add(sky);
-  mesh(sphere,art.mat('#c1c5a3','botanical-ground'),[0,-.1,-5],[15,.65,16]);
-  mesh(box,stone,[0,.43,-1.5],[9.15,.38,4.45]);
-  mesh(box,art.mat('#b4bd92','botanical-ground'),[0,.615,-1.5],[8.98,.025,4.3]);
+  const courtyard=buildCourtyard(art,scene),sky=courtyard.sky;
+  mesh(sphere,art.mat('#65755d','botanical-ground'),[0,-.55,-9],[30,.9,32]);
   // Individual flagstones and a meandering path lead toward the tree.
   for(let i=0;i<22;i++) {
     const z=-.1-i*.38,x=Math.sin(i*.37)*.63;
@@ -160,8 +152,8 @@ export function buildBotanicalGarden(art, scene) {
       }
     }
   };
-  tree(2,-6.2,6.6,4.1,30);tree(-4.8,-6.7,5.2,2.8,14);
-  tree(-1.6,-10.4,5.9,3.2,9);
+  tree(7.5,-8.5,11.6,4.8,30);tree(-7.8,-8.7,10.2,4.5,24);
+  tree(-5.8,-16.4,9.9,4.2,12);tree(6,-18,10.8,4.4,12);
   // Sparse climbing stems with thin, veined leaves and small matching blossoms.
   for(const side of [-1,1]) {
     const x=side*4.02,points=[];
@@ -195,8 +187,8 @@ export function buildBotanicalGarden(art, scene) {
     if(patch%3===0)mesh(sphere,stone,[x,.72,z],[.26,.17,.2]);
   }
   // Small additions reuse the existing grass, bark and stone batches.
-  for(const [x,z,sx,sy,sz]of [[-9,-19,8,1.8,6],[7,-22,10,2.3,8],[0,-27,13,2,8]])
-    mesh(sphere,art.mat('#c1c5a3','botanical-ground'),[x,-.15,z],[sx,sy,sz]);
+  for(const [x,z,sx,sy,sz]of [[-12,-25,8,3.8,6],[12,-27,10,4.3,8],[0,-33,13,3.5,8]])
+    mesh(sphere,art.mat('#536f64','botanical-ground'),[x,-.15,z],[sx,sy,sz]);
   for(let i=0;i<9;i++){
     const side=i%2?1:-1,x=side*(4.45+(i%3)*.2),z=-3.25+(i%3)*1.4;
     mesh(sphere,bark,[x,.75,z],[.025,.105,.025]);
@@ -204,6 +196,10 @@ export function buildBotanicalGarden(art, scene) {
     if(i%2===0)mesh(sphere,stone,[x+.17,.69,z+.13],[.15,.08,.11]);
   }
   art.merge(g);
+  // Keep the older border planting on the same miniature scale as the meadow.
+  for(const list of [flowers,leaves,centers])for(const a of list){
+    if(a.p[1]<1.2&&a.p[2]>-4.5){a.p[1]=.64+(a.p[1]-.64)*.45;a.size*=.5;}
+  }
   const instanced=(geo,mat,items,name)=>{
     const inst=new T.InstancedMesh(geo,mat,items.length),dummy=new T.Object3D();inst.name=name;
     items.forEach((a,i)=>{dummy.position.set(...a.p);dummy.rotation.set(...(a.rotation??[0,0,0]));dummy.scale.setScalar(a.size);dummy.updateMatrix();inst.setMatrixAt(i,dummy.matrix);if(a.color)inst.setColorAt(i,a.color);});
@@ -246,9 +242,10 @@ export function buildBotanicalGarden(art, scene) {
   scene.userData.botanical=stats;
   let time=0,reactedAt=-100;
   return {root:g,sky,stats,react(){reactedAt=time;},reset(){reactedAt=-100;},update(dt){
-    time+=dt;wind.value=time;reaction.value=Math.max(0,1-(time-reactedAt)/1.2);
+    time+=dt;courtyard.update(dt);wind.value=time;reaction.value=Math.max(0,1-(time-reactedAt)/1.2);
     for(const l of lanterns){l.pivot.rotation.z=Math.sin(time*.75+l.phase)*.025+reaction.value*Math.sin(time*6+l.phase)*.018;l.light.intensity=3.2*(.96+.04*Math.sin(time*1.1+l.phase));}
   },dispose(){
+    courtyard.dispose();
     lanterns.forEach(l=>l.pivot.removeFromParent());g.removeFromParent();sky.removeFromParent();
     for(const m of [flowerMesh,farFlowerMesh,leafMesh,centerMesh,backing])m.removeFromParent();
     geometry.forEach(geo=>geo.dispose());looseMaterials.forEach(mat=>mat.dispose());

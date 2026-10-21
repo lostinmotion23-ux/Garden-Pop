@@ -1,4 +1,5 @@
 // Renderer-independent rules. Metres, positive Y up, row zero at the ceiling.
+import { placeRescuedPet, updateGardenPets } from './pet-navigation.js';
 export const BOARD = {
   columns: 20,
   radius: 0.1875,
@@ -389,6 +390,7 @@ export class Game {
           cooldown: 0,
           target: null,
         };
+        placeRescuedPet(animal, this.rescued);
         this.rescued.push(animal);
         this.score += 250;
         this.emit("rescue", { bubble: b, animal });
@@ -418,40 +420,7 @@ export class Game {
   }
   updateGarden(dt) {
     if (!(dt > 0)) return;
-    this.gardenTime += dt;
-    const reserved = new Set();
-    for (const a of this.rescued) {
-      if (this.gardenTime < a.readyAt) continue;
-      a.cooldown = Math.max(0, a.cooldown - dt);
-      let food = this.ground.find((f) => f.id === a.target &&
-        f.landedAt <= this.gardenTime && !reserved.has(f.id));
-      if (!food) {
-        food = this.ground.filter((f) => f.landedAt <= this.gardenTime &&
-          !reserved.has(f.id)).sort((f, g) => Math.abs(f.x - a.x) - Math.abs(g.x - a.x))[0];
-        a.target = food?.id ?? null;
-      }
-      if (food) reserved.add(food.id);
-      const goal = food ? food.x : a.facing * 3.2;
-      const distance = goal - a.x;
-      if (Math.abs(distance) > 0.04) {
-        a.facing = Math.sign(distance);
-        a.x += Math.sign(distance) * Math.min(Math.abs(distance), dt * 0.85);
-      } else if (!food) a.facing *= -1;
-      if (food && Math.abs(food.x - a.x) < 0.14 && a.cooldown === 0) {
-        this.ground.splice(this.ground.indexOf(food), 1);
-        a.target = null;
-        a.cooldown = 0.65;
-        a.eaten++;
-        a.totalEaten++;
-        this.emit("eat", { animal: a.id, bubble: { ...food } });
-        if (a.eaten === 10) {
-          a.eaten = 0;
-          this.inventory.bomb++;
-          this.emit("bomb", { animal: a.id });
-        }
-        this.revision++;
-      }
-    }
+    updateGardenPets(this, dt);
   }
   ensurePowers() {
     const active = [...this.grid.cells.values()].filter((b) => b.type === "power");

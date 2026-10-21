@@ -25,7 +25,10 @@
     "check:game:polish": "node scripts/check-stage1-polish.mjs",
     "check:game:layout": "node scripts/check-stage1-layout.mjs",
     "render:game:polish": "node scripts/render-stage1-previews.mjs",
+    "render:game:stage2": "node scripts/render-stage2-previews.mjs",
+    "render:game:update": "node scripts/render-stage2-previews.mjs garden-update",
     "check:game:stage2": "node scripts/check-stage2.mjs",
+    "check:game:update": "node scripts/check-garden-update.mjs && node scripts/check-garden-update-browser.mjs",
     "game:stage2-assets": "python3 scripts/create-stage2-assets.py"
   },
   "dependencies": {

@@ -26,12 +26,20 @@ export class FlowerCannon {
     this.root.add(new T.Mesh(stemGeo,art.mat('#79935a','botanical-leaf',.75)));
     this.leaves=new T.InstancedMesh(petals,art.mat('#809b5c','botanical-leaf',.75),4);this.leaves.frustumCulled=false;
     this.root.add(this.leaves);this.update(0,0,0);
+    const leaf=new T.Shape();leaf.moveTo(0,.43);
+    leaf.bezierCurveTo(-.078,.49,-.06,.555,0,.62);
+    leaf.bezierCurveTo(.06,.555,.078,.49,0,.43);
+    const pointerGeometry=new T.ExtrudeGeometry(leaf,{depth:.012,bevelEnabled:true,bevelSize:.009,bevelThickness:.006,bevelSegments:1,steps:1,curveSegments:5});
+    const pointerMaterial=new T.MeshStandardMaterial({color:'#ffecb0',emissive:'#e8bc54',emissiveIntensity:.38,roughness:.42});
+    this.geometries.push(pointerGeometry);this.materials.push(pointerMaterial);
+    this.pointer=new T.Mesh(pointerGeometry,pointerMaterial);this.pointer.name='CannonDirectionPointer';
+    this.root.add(this.pointer);this.update(0,0,0);
   }
   fire(){this.firedAt=this.time;}
   reset(){this.firedAt=-100;this.comboAt=-100;this.angle=0;}
   celebrate(){this.comboAt=this.time;}
   update(dt,angle,time=this.time+dt){
-    this.time=time;this.angle+=(angle-this.angle)*Math.min(1,dt*14);
+    this.time=time;this.angle=angle;
     const age=time-this.firedAt,t=Math.max(0,Math.min(1,age/.28));
     const recoil=age>=0&&age<.28?Math.sin(t*Math.PI)*(1-t):0;
     this.head.position.set(-Math.sin(this.angle)*recoil*.075,
@@ -39,7 +47,8 @@ export class FlowerCannon {
     const idle=age>1&&!this.context.flying,breath=idle?Math.sin(time*.9)*.035:0;
     const combo=Math.max(0,1-(time-this.comboAt)/.8);
     const curiosity=idle&&Math.abs(this.context.petX??10)<1.5?Math.sin(time*.65)*.035:0;
-    this.head.rotation.z=-this.angle+Math.sin(time*1.1)*.012+curiosity+Math.sin(time*15)*combo*.035;
+    this.head.rotation.z=-this.angle;
+    if(this.pointer){this.pointer.position.set(this.head.position.x,this.head.position.y,BOARD.z+.08);this.pointer.rotation.z=-angle;}
     for(let i=0;i<8;i++){
       const a=i*Math.PI/4;
       this.dummy.position.set(Math.sin(a)*.285*(1+breath+combo*.04),Math.cos(a)*.285*(1+breath+combo*.04),-.045+breath*.45);

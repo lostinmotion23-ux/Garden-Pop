@@ -1,5 +1,7 @@
 # Animated textured animal meshes
 
+User approval recorded on 2026-10-21: “approve the blobs.” In the context of the open `animal-art.html` review page, this approves the current rounded animal models shown there. This records visual approval only; it does not authorize publication or changes to the street display or account avatar.
+
 The latest user reference supplies the target: soft kawaii baby animals, flowers, recognizable species, expressive faces and genuine mesh animation. The earlier concept image remains design context. This implementation uses original three-dimensional mesh geometry and UV/PBR materials; it does not paste either reference onto the animals.
 
 The street family now includes bunny, fox, kitten, blue bird, deer, bear and a pink axolotl. Two decorative bubble animals remain. The game retains its eight existing progression identities, including the puppy; the former dreamling identity now uses the pink axolotl-style mesh. No progression, matching, shot, swap, miss-penalty or scoring rules were changed.

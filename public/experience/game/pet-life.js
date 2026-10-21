@@ -1,5 +1,5 @@
 import {applyExpression} from './expressions.js';
-// Poses and small depth lanes only: never changes pets, targets, meals or rewards.
+// Poses only. Ground x/z comes exclusively from the collision-aware navigator.
 const TRAITS={bunny:[8.5,.075,1.3],fox:[2.1,.018,.6],kitten:[5,.035,1.8],bird:[9,.055,2],deer:[4,.035,.8],bear:[1.6,.012,.45],puppy:[6,.045,1.7],dreamling:[3,.025,.9]};
 export function enrichPet(a,pet,game,animals,time,dt){
   const root=a.object,animal=root.userData.animal,face=animal.children[0],dict=face.morphTargetDictionary;
@@ -22,32 +22,25 @@ export function enrichPet(a,pet,game,animals,time,dt){
     let neighbour=null,distance=1.05;
     for(const other of game.rescued){
       if(other.id===pet.id||other.target)continue;
-      const d=Math.abs(other.x-pet.x);if(d<distance){distance=d;neighbour=other;}
+      const d=Math.hypot(other.x-pet.x,other.z-pet.z);if(d<distance){distance=d;neighbour=other;}
     }
     if(neighbour){
       const phase=(Math.min(pet.id,neighbour.id)*.73)%9,cycle=(time+phase)%13;
       if(cycle<2.1){
         const t=Math.sin(cycle/2.1*Math.PI),toward=Math.sign(neighbour.x-pet.x)||1;
-        root.position.x+=toward*Math.min(.1,Math.max(0,distance-.5)*.2)*t;
         root.rotation.y=toward*.6*t;root.rotation.z+=toward*.055*t;
         root.position.y+=Math.max(0,Math.sin(cycle*8))*.035*t;
         a.socialUntil=time+.05;applyExpression(face,'Smile',time,a.phase,.85);
       }
     }
   }
-  // A second/third depth lane limits overlap when pets pass. The floor extends to z=-3.7.
-  let lane=0;for(const other of game.rescued)if(other.id<pet.id&&Math.abs(other.x-pet.x)<.55)lane++;
-  const targetLane=Math.min(2,lane)*.27;
-  a.lane=(a.lane??0)+(targetLane-(a.lane??0))*Math.min(1,dt*5);
-  root.position.z-=a.lane;
   if(a.bombAt!==undefined){
     const age=time-a.bombAt;
-    if(age<.6){const t=Math.max(0,(age-.25)/.35);root.position.x=a.bombX+(root.position.x-a.bombX)*t*t*(3-2*t);root.rotation.z=Math.sin(age*20)*.045;}
+    if(age<.6)root.rotation.z=Math.sin(age*20)*.045;
     if(age<.6){const swell=Math.sin(Math.min(1,age/.6)*Math.PI)*.045;animal.scale.x*=1+swell;animal.scale.z*=1+swell;}
     if(age>.18&&age<.65)applyExpression(face,'Shock',time,a.phase);
     if(age>.35&&age<.78)root.position.y+=Math.sin((age-.35)/.43*Math.PI)*.12;
     if(age>=.65&&age<1.25)applyExpression(face,'Smile',time,a.phase,.95);
     if(age>=1.25)delete a.bombAt;
   }
-  root.position.x=Math.max(-3.35,Math.min(3.35,root.position.x));
 }

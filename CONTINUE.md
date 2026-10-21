@@ -1,3 +1,7 @@
+> **Latest local update, 2026-10-21:** All five systems from the new improvement brief are implemented locally: miniature 3D meadow, real forest trees, fieldstone walls, collision-aware pets and score-based aiming assistance. Read [the coordinated update record](docs/garden-environment-update.md) for files, tests, captures and the software-rendering performance limitation. Previous checkpoint notes below are historical.
+
+> **Local continuation, 2026-10-21:** Warm dusk is now confirmed by the user. A first courtyard iteration is implemented locally. Read [local courtyard progress](docs/local-courtyard-progress.md) for current setup, captures and validation. The earlier checkpoint below is historical; no Project 0 publication has occurred.
+
 # Continue here — Bubble Critter Garden
 
 Saved checkpoint: **2026-10-21**. Repository: `lostinmotion23-ux/Garden-Pop`. Project 0 lot: **3157**.

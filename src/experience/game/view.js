@@ -5,8 +5,8 @@ import {buildPower,animatePower} from "./power-art.js";
 import { FlowerCannon } from "./cannon.js";
 import {applyExpression} from "./expressions.js";
 import { BOARD, COLORS, POWERS, pointAlong } from "./rules.js";
-// A presentation-only depth detour keeps pets and their food behind the cannon.
-const cannonDetour=x=>.78*(1-Math.min(1,Math.abs(x)/1.05)**2)**2;
+import { foodGroundPosition } from './pet-navigation.js';
+import { AimGuideFade } from './aim-guide.js';
 export class GardenView {
   constructor(p0, art) {
     this.p0 = p0;
@@ -17,6 +17,7 @@ export class GardenView {
     this.cannon = new FlowerCannon(art);
     this.root.add(this.cannon.root);
     this.aimActive = true;
+    this.guideFade=new AimGuideFade();
     this.expression = "Smile";
     this.expressionUntil = 0;
     this.lastRevision = -1;
@@ -214,9 +215,9 @@ export class GardenView {
       if (!this.animals.has(a.id)) {
         const object = this.creature(a, false);
         object.position.set(
-          -2.9 + this.animals.size * 0.85,
+          a.x,
           0.96,
-          BOARD.z + 0.65,
+          a.z,
         );
         this.root.add(object);
         this.animals.set(a.id, {
@@ -241,6 +242,7 @@ export class GardenView {
     }
   }
   resetEffects(){
+    this.guideFade.reset();
     this.popEffects.reset();this.particlePool.push(...this.particles);this.particles.length=0;
     this.particleMesh.count=0;this.cannon.reset();this.slide=null;this.tweens.clear();
     this.collectibles.forEach(c=>c.object.removeFromParent());this.collectibles.length=0;
@@ -359,15 +361,16 @@ export class GardenView {
       }
     }
     for (const b of game.ground) {
+      const ground=foodGroundPosition(b);
       const duration = Math.sqrt(Math.max(0, b.startY - 0.815) / 3.5);
       const age = Math.max(0, game.gardenTime - b.landedAt + duration);
       const t = Math.min(1, duration > 0 ? age / duration : 1);
       const bounceAge = game.gardenTime - b.landedAt;
       const bounce = bounceAge > 0 && bounceAge < 0.65
         ? Math.abs(Math.sin(bounceAge * 12)) * 0.09 * (1 - bounceAge / 0.65) : 0;
-      add(b.startX + (b.x - b.startX) * t,
+      add(b.startX + (ground.x - b.startX) * t,
         Math.max(b.y, b.startY - 3.5 * age * age) + bounce,
-        BOARD.z + (b.z - cannonDetour(b.x) - BOARD.z) * t, COLORS[b.color], 1, bounceAge >= 0 ? "floor" : "none");
+        BOARD.z + (ground.z - BOARD.z) * t, COLORS[b.color], 1, bounceAge >= 0 ? "floor" : "none");
     }
     this.bubbles.count = this.glints.count = index;
     this.bubbles.instanceMatrix.needsUpdate = true;
@@ -396,7 +399,7 @@ export class GardenView {
       const celebrating=this.time<(a.celebratingUntil??0),happy=this.time<(a.happyUntil??0),eating=!walking;
       if(celebrating)y+=Math.abs(Math.sin((a.celebratingUntil-this.time)*10))*.11;
       else if(happy&&!eating)y+=Math.max(0,Math.sin((a.happyUntil-this.time)*10))*.055;
-      const depth=BOARD.z-.3-cannonDetour(x);
+      const depth=pet.z;
       a.object.position.set(x,y,depth);
       a.object.rotation.y = pet.facing * .35 + Math.sin(this.time*.8+a.phase)*.065;
       a.object.rotation.z = Math.sin(this.time * (walking ? 7 : 13) + a.phase) * 0.035;
@@ -466,9 +469,13 @@ export class GardenView {
     const advance=Math.max(0,1-(this.time-this.nextChangedAt)/.3);
     this.nextShot.position.y=BOARD.launcher-.2+Math.sin(advance*Math.PI)*.10;
     this.nextShot.material.color.set(COLORS[game.next]);
+    const assistance=this.guideFade.update(game.score,dt,!!flight);
+    this.dotMaterial.opacity=.72*assistance;
+    this.dotHalo.material.opacity=.12*assistance;
+    this.ghost.material.opacity=.4*assistance;
     let dot = 0;
     if (
-      this.aimActive && path && !flight && game.status === "playing" &&
+      assistance>0 && this.aimActive && path && !flight && game.status === "playing" &&
       (!game.selected || game.selected === "wild")
     ) {
       for (let d = 0.3; d < path.distance && dot < 150; d += 0.17) {
@@ -484,7 +491,7 @@ export class GardenView {
     this.dotHalo.instanceMatrix.needsUpdate = true;
     this.dots.instanceMatrix.needsUpdate = true;
     this.ghost.visible = Boolean(
-      this.aimActive && path?.cell && !flight &&
+      assistance>0 && this.aimActive && path?.cell && !flight &&
       (!game.selected || game.selected === "wild") && game.status === "playing",
     );
     if (this.ghost.visible) {

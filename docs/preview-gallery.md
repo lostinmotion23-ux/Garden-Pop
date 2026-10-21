@@ -25,3 +25,13 @@ These are the three images to show when continuing in VS Code. Read [the handoff
 ![Actual Stage 1 phone game showing mobile HUD and inventory layout](previews/stage1-garden-phone.png)
 
 [Open full-size phone preview](previews/stage1-garden-phone.png)
+
+## Current coordinated update
+
+The three images above remain the original concept/Stage 1 comparison.
+The latest implemented local game now includes the 3D meadow, actual woodland,
+fieldstone walls, pet avoidance and score-based aiming assistance.
+
+[Actual updated desktop capture](previews/garden-update-desktop.png) ·
+[Actual updated phone capture](previews/garden-update-phone.png) ·
+[Implementation and validation record](garden-environment-update.md)

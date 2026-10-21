@@ -1,3 +1,7 @@
+> **Latest local update, 2026-10-21:** All five systems from the new improvement brief are implemented locally: miniature 3D meadow, real forest trees, fieldstone walls, collision-aware pets and score-based aiming assistance. Read [the coordinated update record](docs/garden-environment-update.md) for files, tests, captures and the software-rendering performance limitation. Previous checkpoint notes below are historical.
+
+> **Local update, 2026-10-21:** The user chose warm dusk. A first courtyard environment is implemented locally; see [current progress and Windows setup](docs/local-courtyard-progress.md). Start with `.\scripts\dev-local.cmd` and open `http://127.0.0.1:5173/game.html`. Earlier checkpoint descriptions below are historical.
+
 # Bubble Critter Garden · Project 0 lot 3157
 
 > **Saved for local VS Code continuation — 2026-10-21.** Start with [CONTINUE.md](CONTINUE.md). Stage 1 is live (submission 9001); Stage 2 source and assets are included in this repository and are **not published to Project 0**. The new courtyard/skybox is a proposed design, not implemented scenery. Older notes below describe previous revisions.

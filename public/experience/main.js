@@ -9,6 +9,7 @@ import { GardenUI } from "./game/ui.js";
 import { GardenAudio } from "./game/audio.js";
 import { GardenRenderer } from "./game/render.js";
 import { GardenAmbience } from "./game/ambience.js";
+import { GARDEN_THEME } from "./game/garden-theme.js";
 
 export default async function start(p0) {
   p0.createRenderer({ antialias: true });
@@ -20,7 +21,7 @@ export default async function start(p0) {
   const pavilion = art.pavilion(p0.scene);
   const ambience = new GardenAmbience(p0.scene, art);
   for (const light of p0.scene.children) if (light.isLight && !light.isPointLight) light.intensity = 0.3;
-  p0.scene.add(new THREE.HemisphereLight("#dceaff", "#706580", 0.65));
+  p0.scene.add(new THREE.HemisphereLight(GARDEN_THEME.light.sky, GARDEN_THEME.light.ground, 0.65));
   // Capture a soft studio sky once, then reuse its filtered reflections on all PBR surfaces.
   const studio = new THREE.Scene();
   studio.background = new THREE.Color("#8d94b0");
@@ -35,13 +36,13 @@ export default async function start(p0) {
   p0.scene.environment = reflections.texture;
   pmrem.dispose();
   studio.traverse((m) => { if (m.isMesh) { m.geometry.dispose(); m.material.dispose(); } });
-  const sun = new THREE.DirectionalLight("#fff0d3", 2.05);
+  const sun = new THREE.DirectionalLight(GARDEN_THEME.light.sun, GARDEN_THEME.light.intensity);
   sun.position.set(-3, 11, 8);
   p0.scene.add(sun);
   const fill = new THREE.DirectionalLight("#d7e4e4", 0.5);
   fill.position.set(6, 5, 3);
   p0.scene.add(fill);
-  p0.renderer.setClearColor("#cbd8d7", 1);
+  p0.renderer.setClearColor(GARDEN_THEME.fog.color, 1);
   p0.renderer.toneMapping = THREE.ACESFilmicToneMapping;
   p0.renderer.toneMappingExposure = 1.0;
   const game = new Game(1),
@@ -387,8 +388,6 @@ export default async function start(p0) {
     art.dispose();
     p0.scene.environment = null;
     reflections.dispose();
-    pavilion.sky.geometry.dispose();
-    pavilion.sky.material.dispose();
   });
   p0.loading(1, "the garden is ready");
   // The local development harness uses this controller; no globals or hidden play modes.

@@ -1,8 +1,9 @@
+import {browserExecutable} from './browser-options.mjs';
 import {spawn} from 'node:child_process';import {setTimeout as delay} from 'node:timers/promises';import {chromium} from '@playwright/test';import assert from 'node:assert/strict';
-const server=spawn('node',['node_modules/vite/bin/vite.js','--host','127.0.0.1','--port','4187','--strictPort'],{stdio:'ignore'});let browser;
+const server=spawn(process.execPath,['node_modules/vite/bin/vite.js','--host','127.0.0.1','--port','4187','--strictPort'],{stdio:'ignore'});let browser;
 try{
  for(let i=0;i<50;i++){try{if((await fetch('http://127.0.0.1:4187/game.html')).ok)break;}catch{}await delay(100);}
- browser=await chromium.launch({executablePath:'/usr/bin/chromium',args:['--no-sandbox','--use-angle=swiftshader','--enable-unsafe-swiftshader']});
+ browser=await chromium.launch({executablePath:browserExecutable,args:['--no-sandbox','--use-angle=swiftshader','--enable-unsafe-swiftshader']});
  const page=await browser.newPage({viewport:{width:1366,height:768}}),errors=[];page.on('pageerror',e=>errors.push(e.message));
  await page.goto('http://127.0.0.1:4187/game.html');await page.waitForFunction(()=>!!window.gardenGame,null,{timeout:90000});await page.evaluate(()=>gardenGame.action('play'));
  for(const [width,height]of [[1920,1080],[1600,900],[1366,768]]){
@@ -17,10 +18,10 @@ try{
   assert.deepEqual(layout.overlap,[]);assert.deepEqual(layout.out,[]);assert.equal(layout.icons,7);assert.equal(layout.slots,7);assert.ok(layout.portraits);
   console.log(JSON.stringify({width,height,...layout}));
  }
- await page.screenshot({path:'docs/previews/stage1-hud-shelf-desktop.png'});
+ await page.screenshot({path:'.local/layout-desktop.png'});
  assert.ok(await page.evaluate(()=>{const a=gardenGame.shelf.icons.get('fire').getObjectByProperty('isMesh',true);const b=gardenGame.view.powerTemplates.get('fire').getObjectByProperty('isMesh',true);return a.material!==b.material&&b.material.depthTest;}));
  await page.setViewportSize({width:390,height:844});await page.waitForFunction(()=>gardenP0.width===390&&gardenGame.ui.iconSlots.length===7);
- await page.evaluate(()=>gardenGame.action('journal'));await page.waitForTimeout(100);await page.screenshot({path:'docs/previews/stage1-rescue-journal.png'});
+ await page.evaluate(()=>gardenGame.action('journal'));await page.waitForTimeout(100);await page.screenshot({path:'.local/layout-phone-journal.png'});
  assert.ok(await page.evaluate(()=>gardenGame.ui.buttons.some(b=>b.id==='journal-next')));
  await page.evaluate(()=>{gardenGame.action('back');gardenGame.action('resume');});
  assert.deepEqual(errors,[]);console.log('PASS: parchment HUD, unchanged-model portraits, genuine isolated 3D shelf icons, no board overlap at all three required resolutions and phone journal.');

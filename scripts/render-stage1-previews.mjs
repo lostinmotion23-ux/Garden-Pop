@@ -1,8 +1,9 @@
+import {browserExecutable} from './browser-options.mjs';
 import {chromium} from '@playwright/test';import {spawn} from 'node:child_process';import {setTimeout as delay} from 'node:timers/promises';import {readFile,writeFile} from 'node:fs/promises';import assert from 'node:assert/strict';
-const server=spawn('node',['node_modules/vite/bin/vite.js','--host','127.0.0.1','--port','4189','--strictPort'],{stdio:'ignore'});let browser;
+const server=spawn(process.execPath,['node_modules/vite/bin/vite.js','--host','127.0.0.1','--port','4189','--strictPort'],{stdio:'ignore'});let browser;
 try{
  for(let i=0;i<50;i++){try{if((await fetch('http://127.0.0.1:4189/game.html')).ok)break;}catch{}await delay(100);}
- browser=await chromium.launch({executablePath:'/usr/bin/chromium',args:['--no-sandbox','--use-angle=swiftshader','--enable-unsafe-swiftshader']});
+ browser=await chromium.launch({executablePath:browserExecutable,args:['--no-sandbox','--use-angle=swiftshader','--enable-unsafe-swiftshader']});
  const page=await browser.newPage({viewport:{width:1920,height:1080}}),errors=[];page.on('pageerror',e=>errors.push(e.message));page.on('console',m=>{if(m.type()==='error'&&!m.text().includes('favicon'))errors.push(m.text());});
  await page.goto('http://127.0.0.1:4189/game.html');await page.waitForFunction(()=>!!window.gardenGame,null,{timeout:90000});await page.evaluate(()=>gardenGame.action('play'));
  const perf=await page.evaluate(async()=>{const frames=[];let last=performance.now();for(let i=0;i<20;i++){await new Promise(requestAnimationFrame);const now=performance.now();frames.push(now-last);last=now;}return{renderer:'Chromium SwiftShader software GPU',frames:frames.length,meanMs:frames.reduce((a,b)=>a+b)/frames.length,worstMs:Math.max(...frames),...gardenP0.renderer.info.render,target:[gardenGame.compositor.target.width,gardenGame.compositor.target.height]};});
