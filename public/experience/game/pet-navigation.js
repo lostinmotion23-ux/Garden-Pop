@@ -198,9 +198,12 @@ export function updateGardenPets(game,dt) {
       steer(a,goal,!!food,animals,nearby(a),game.gardenTime,step);
       if(food&&Math.hypot(goal.x-a.x,goal.z-a.z)<.14&&a.cooldown===0){
         const index=game.ground.indexOf(food);if(index<0)continue;
-        game.ground.splice(index,1);a.target=null;a.cooldown=.65;a.eaten++;a.totalEaten++;
+        game.ground.splice(index,1);a.target=null;a.cooldown=.65;
+        // Eating continues at full storage, but extra meals cannot bank bombs.
+        if(!game.bombsFull())a.eaten++;
+        a.totalEaten++;
         game.emit('eat',{animal:a.id,bubble:{...food}});
-        if(a.eaten===10){a.eaten=0;game.inventory.bomb++;game.emit('bomb',{animal:a.id});}
+        if(a.eaten===10){a.eaten=0;if(game.grantPower('bomb'))game.emit('bomb',{animal:a.id});}
         game.revision++;
       }
     }

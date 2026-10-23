@@ -1,5 +1,13 @@
-import {ANIMALS,NAMES,POWERS,POWER_NAMES} from './rules.js';
+import {ANIMALS,NAMES,POWERS,POWER_NAMES,COLOR_NAMES} from './rules.js';
 const BROWN='#503b28',GOLD='#9e783d',SHORT=['Fire','Color','Mix','Star','Bomb','Wild','Bolt'];
+function wildChoices(ui,game) {
+  const count=game.colorCount;
+  if(count<=5)return COLOR_NAMES.slice(0,count).map((label,i)=>({label,id:`color:${i}`,color:i}));
+  const pages=Math.ceil(count/4),page=(ui.colorPage??0)%pages;
+  const items=COLOR_NAMES.slice(page*4,Math.min(count,page*4+4)).map((label,i)=>({label,id:`color:${page*4+i}`,color:page*4+i}));
+  items.push({label:'More',id:'color-next',color:-1});
+  return items;
+}
 export function rescueCard(ui,game,index,x,y,w,h,time){
   const c=ui.ctx,kind=ANIMALS[index],count=game.rescued.filter(a=>a.kind===kind).length;
   const active=[...game.grid.cells.values()].some(b=>b.type==='animal'&&b.kind===kind);
@@ -23,11 +31,11 @@ export function drawGardenHud(ui,game,state,time,w,h,phone){
     ui.text('Bubble Critter Garden',w/2,compact?27:31,compact?21:24,BROWN,'center');
     ui.text(`Endless garden · ${game.score.toLocaleString()} points`,w/2,compact?53:60,18,BROWN,'center');
     ui.text(`${game.rescued.length} pets · Misses ${game.pendingMisses}/2`,w/2,compact?78:88,16,BROWN,'center');
-    if(!compact)ui.text(`${game.ground.length} fallen treats`,w/2,113,16,GOLD,'center');
+    if(!compact)ui.text(`${game.colorCount} colors · ${game.ground.length} fallen treats`,w/2,113,16,GOLD,'center');
     const row=header+16;
     if(game.selected==='wild'){
       const chip=(w-108)/5;
-      ['Pink','Lilac','Blue','Gold','Mint'].forEach((label,i)=>ui.button(`color:${i}`,label,8+i*(chip+2),row,chip,38,{font:16,selected:state.selectedColor===i}));
+      wildChoices(ui,game).forEach(({label,id,color},i)=>ui.button(id,label,8+i*(chip+2),row,chip,38,{font:16,selected:state.selectedColor===color}));
       ui.button('cancel','Cancel',w-88,row,80,38,{font:16,secondary:true});
     }else{
       ui.button('pause','Pause',10,row,83,38,{font:18});
@@ -49,7 +57,7 @@ export function drawGardenHud(ui,game,state,time,w,h,phone){
     ui.hudLayout={phone:true,header};return;
   }
   const pw=w<800?160:Math.min(270,Math.max(210,w*.18)),x=14,top=14,compact=h<580;
-  const count=compact?0:h<700?4:8,cardH=h>=900?54:46;
+  const count=compact?0:Math.min(ANIMALS.length,h<700?4:8),cardH=h>=900?54:46;
   const panelH=compact?Math.min(h-52,292):Math.min(h-28,266+count*(cardH+4)+(count<8?34:0));
   ui.panel(x,top,pw,panelH);
   if(compact){
@@ -61,14 +69,14 @@ export function drawGardenHud(ui,game,state,time,w,h,phone){
     ui.button('sound',state.audio.sfx?'Sound on':'Sound off',x+10,234,pw-20,32,{font:16,secondary:true});
   }else{
     ['Bubble','Critter','Garden'].forEach((title,i)=>ui.text(title,x+pw/2,35+i*27,25,BROWN,'center'));
-    ui.text('Endless garden',x+pw/2,117,17,GOLD,'center');
+    ui.text(`Endless garden · ${game.colorCount} colors`,x+pw/2,117,17,GOLD,'center');
     ui.text(game.score.toLocaleString()+' points',x+pw/2,146,25,BROWN,'center');
     ui.text(`${game.rescued.length} pets · Misses ${game.pendingMisses}/2`,x+pw/2,175,16,BROWN,'center');
-    ui.journalPages=count===8?1:2;
-    const first=count===8?0:Math.min(1,Math.max(0,ui.journalPage))*4;
-    for(let i=0;i<count;i++)rescueCard(ui,game,first+i,x+10,194+i*(cardH+4),pw-20,cardH,time);
+    ui.journalPages=Math.ceil(ANIMALS.length/count);
+    const first=Math.min(ui.journalPages-1,Math.max(0,ui.journalPage))*count;
+    for(let i=0;i<count&&first+i<ANIMALS.length;i++)rescueCard(ui,game,first+i,x+10,194+i*(cardH+4),pw-20,cardH,time);
     let yy=194+count*(cardH+4)+5;
-    if(count<8){ui.button('journal-prev','‹',x+10,yy,40,28,{font:18,secondary:true});ui.text(`${first+1}–${first+count} of 8`,x+pw/2,yy+14,16,BROWN,'center');ui.button('journal-next','›',x+pw-50,yy,40,28,{font:18,secondary:true});yy+=35;}
+    if(count<ANIMALS.length){ui.button('journal-prev','‹',x+10,yy,40,28,{font:18,secondary:true});ui.text(`${first+1}–${Math.min(first+count,ANIMALS.length)} of ${ANIMALS.length}`,x+pw/2,yy+14,16,BROWN,'center');ui.button('journal-next','›',x+pw-50,yy,40,28,{font:18,secondary:true});yy+=35;}
     ui.button('pause','Pause',x+10,yy,pw-20,32,{font:18});
     ui.button('sound',state.audio.sfx?'Sound on':'Sound off',x+10,yy+39,pw-20,30,{font:16,secondary:true});
   }
@@ -81,10 +89,10 @@ export function drawGardenHud(ui,game,state,time,w,h,phone){
   ui.button(game.selected?'cancel':'swap',game.selected?'Cancel power':'Swap colors',rx,14+rh+9,pw,34,{font:17,secondary:true});
   if(game.selected==='wild' && compact){
     const width=w-2*(pw+24),bw=(width-8)/5;
-    ['Pink','Lilac','Blue','Gold','Mint'].forEach((label,i)=>ui.button(`color:${i}`,label,w/2-width/2+i*(bw+2),5,bw,30,{font:16,selected:state.selectedColor===i}));
+    wildChoices(ui,game).forEach(({label,id,color},i)=>ui.button(id,label,w/2-width/2+i*(bw+2),5,bw,30,{font:16,selected:state.selectedColor===color}));
   }else if(game.selected==='wild'){
     const bw=(pw-12)/3;
-    ['Pink','Lilac','Blue','Gold','Mint'].forEach((label,i)=>ui.button(`color:${i}`,label,rx+i%3*(bw+4),14+rh+51+Math.floor(i/3)*34,bw,29,{font:16,selected:state.selectedColor===i}));
+    wildChoices(ui,game).forEach(({label,id,color},i)=>ui.button(id,label,rx+i%3*(bw+4),14+rh+51+Math.floor(i/3)*34,bw,29,{font:16,selected:state.selectedColor===color}));
   }
   ui.hudLayout={phone:false,rx,pw,leftBottom:top+panelH,compact,inventoryBottom:14+rh};
   c.fillStyle='#fff5e5e8';c.beginPath();c.roundRect(w/2-210,h-32,420,28,8);c.fill();

@@ -169,6 +169,7 @@ export default async function start(p0) {
         audio.play('eat',time,{rate:pet?.kind==='bear'?.88:pet?.kind==='bird'?1.15:1});
       }
       if (e.type === "lose") endDelay = time + 2.1;
+      if (e.type === "color-unlock") ui.toast(`New color unlocked! ${e.count} colors in play`,time);
     }
     path = trajectory(game.grid, angle);
     ui.last = "";
@@ -178,6 +179,8 @@ export default async function start(p0) {
   }
   function reset(level) {
     game.begin(level);
+    state.selectedColor = 0;
+    ui.colorPage = 0;
     ui.resetPresentation();
     shelf.reset();celebrations.reset();ambience.reset();pavilion.reset();audio.reset();
     flight = null;
@@ -224,13 +227,17 @@ export default async function start(p0) {
     if (id === "exit") p0.exit();
     if (id === "swap" && !flight && !state.menu) game.swap();
     if (id === "cancel" && !flight) game.cancel();
-    if (id.startsWith("color:")) state.selectedColor = Number(id.split(":")[1]);
+    if (id === "color-next") ui.colorPage = ((ui.colorPage ?? 0) + 1) % Math.ceil(game.colorCount / 4);
+    if (id.startsWith("color:")) {
+      const color = Number(id.split(":")[1]);
+      if (Number.isInteger(color) && color >= 0 && color < game.colorCount) state.selectedColor = color;
+    }
     if (id.startsWith("power:") && !flight && !state.menu) {
       const power = id.split(":")[1];
       game.select(power);
       if (game.selected)
         ui.toast(
-          `${POWER_NAMES[POWERS.indexOf(power)]} selected · tap a target`,
+          `${POWER_NAMES[POWERS.indexOf(power)]} selected · ${power === "fire" ? "aim and shoot" : "tap a target"}`,
           time,
         );
     }
@@ -238,14 +245,14 @@ export default async function start(p0) {
   }
   function shoot() {
     if (state.menu || flight || game.status !== "playing") return false;
-    if (game.selected && game.selected !== "wild") {
+    if (game.selected && game.selected !== "wild" && game.selected !== "fire") {
       if (selectedCell && game.use(selectedCell.r, selectedCell.c)) {
         process();
         return true;
       }
       return false;
     }
-    if (!path?.cell) return false;
+    if (game.selected === "fire" ? !path?.hit : !path?.cell) return false;
     flight = {
       path,
       color: game.selected === "wild" ? state.selectedColor : game.current,

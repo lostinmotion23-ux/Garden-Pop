@@ -5,7 +5,7 @@ const INK = "#503b28",
   DARK = "#503b28";
 const SHORT = ["Fire", "Color", "Mix", "Star", "Bomb", "Wild", "Bolt"];
 const TIPS = [
-  "Tap the row to clear.",
+  "Aim and shoot. Burn up to 5 connected bubbles.",
   "Tap a color to clear it.",
   "Tap the board to shuffle.",
   "Tap a small blast target.",
@@ -15,13 +15,14 @@ const TIPS = [
 ];
 const HELP = [
   "Match 3 or more touching bubbles of one color.",
+  "Start with 5 colors. Every 10,000 points unlocks another color in fresh rows and refills.",
   "Mouse: aim, then left-click. Touch: drag and release.",
   "Bounce shots off the sides. Right-click or tap Swap to exchange current and next colors.",
   "Every TWO missed matches add one full row. The first miss stays on the counter until the second.",
   "Bubbles attached to the ceiling must stay above the pink danger line.",
   "Clear bubbles to reveal one trapped critter. Drop its supports to rescue it.",
-  "Three glowing skill bubbles stay on the board. Drop them to collect; select a skill, then tap its target.",
-  "Unpopped fallen bubbles stay on the ground. Pets walk over and eat them; every 10 makes a Big Bomb.",
+  "Drop glowing skill bubbles to collect. Aim and shoot Fire and Wild; tap a target for other skills.",
+  "Pets eat fallen unpopped bubbles. Every 10 meals makes a Big Bomb; hold up to 3. Production pauses when full.",
   "One continuous garden: rescuing a pet never ends the game. R restarts; P pauses. Esc leaves.",
 ];
 export class GardenUI {

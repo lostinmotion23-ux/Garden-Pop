@@ -26,6 +26,7 @@ export class PopEffects {
     root.add(this.bubbles,this.ripples);
   }
   add(bubbles,grid){
+    while(this.colors.length<COLORS.length)this.colors.push(new T.Color(COLORS[this.colors.length]));
     let i=0;for(const b of bubbles){if(b.type!=='normal')continue;const p=this.free.pop();if(!p)break;
       const pos=grid.position(b.r,b.c);Object.assign(p,{x:pos.x,y:pos.y,color:b.color,age:0,delay:Math.min(.055,i++*.003),emitted:false});this.active.push(p);
     }

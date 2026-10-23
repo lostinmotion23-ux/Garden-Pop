@@ -13,6 +13,18 @@ export const BOARD = {
   z: -1.6,
 };
 export const COLORS = ["#f28fbd", "#b09be8", "#79c5ee", "#f3cf71", "#93cea3"];
+export const COLOR_NAMES = ['Pink','Lilac','Blue','Gold','Mint'];
+export const COLOR_STEP = 10000;
+const EXTRA_COLORS = [['#ee7458','Coral'],['#35aaa6','Teal'],['#ef982f','Orange'],['#4864c8','Indigo'],['#f1eee3','Pearl'],['#96485d','Berry']];
+function ensureColors(count) {
+  while (COLORS.length < count) {
+    const index = COLORS.length, extra = EXTRA_COLORS[index - 5];
+    // Continue deterministically beyond the named palette; no difficulty cap.
+    COLORS.push(extra?.[0] ?? `hsl(${((index * 137.507764) % 360).toFixed(6)}, 65%, ${index % 2 ? 42 : 68}%)`);
+    COLOR_NAMES.push(extra?.[1] ?? `Hue ${index + 1}`);
+  }
+}
+export const BOMB_CAP = 3;
 export const POWERS = [
   "fire",
   "rainbow",
@@ -23,7 +35,7 @@ export const POWERS = [
   "lightning",
 ];
 export const POWER_NAMES = [
-  "Fire Row",
+  "Fire Ball",
   "Rainbow Clear",
   "Shuffle",
   "Star Bomb",
@@ -37,9 +49,6 @@ export const ANIMALS = [
   "kitten",
   "bird",
   "deer",
-  "bear",
-  "puppy",
-  "dreamling",
 ];
 export const NAMES = [
   "Mochi",
@@ -47,9 +56,6 @@ export const NAMES = [
   "Clover",
   "Pip",
   "Fern",
-  "Maple",
-  "Biscuit",
-  "Twinkle",
 ];
 // One continuous garden. Rescue milestones never end or reset the run.
 export const GARDEN = { seed: 3157, unlock: 30, between: 36, skillBubbles: 3 };
@@ -292,11 +298,16 @@ export class Game {
   emit(type, data = {}) {
     this.events.push({ type, ...data });
   }
+  get colorCount() {
+    const count = 5 + Math.floor(this.score / COLOR_STEP);
+    ensureColors(count);
+    return count;
+  }
   randomColor(r, c) {
     // Shuffle candidates rather than painting stripes. Keep generated connected
     // patches small, while allowing useful pairs/triples for normal matches.
-    const choices = [0, 1, 2, 3, 4];
-    for (let i = 4; i > 0; i--) {
+    const choices = Array.from({length: this.colorCount}, (_, i) => i);
+    for (let i = choices.length - 1; i > 0; i--) {
       const j = Math.floor(this.random() * (i + 1));
       [choices[i], choices[j]] = [choices[j], choices[i]];
     }
@@ -354,7 +365,7 @@ export class Game {
     const weights = other.length ? other : useful;
     return weights.length
       ? weights[Math.floor(this.random() * weights.length)]
-      : Math.floor(this.random() * 5);
+      : Math.floor(this.random() * this.colorCount);
   }
   swap() {
     if (this.status !== "playing" || this.selected) return false;
@@ -364,6 +375,7 @@ export class Game {
     return true;
   }
   settle(removed, reason = "match") {
+    const previousColors = this.colorCount;
     const direct = this.grid.remove(removed);
     const fallen = this.grid.detach();
     const ordinary = direct.filter((b) => b.type === "normal"),
@@ -395,8 +407,8 @@ export class Game {
         this.score += 250;
         this.emit("rescue", { bubble: b, animal });
       } else if (b.type === "power") {
-        this.inventory[b.power]++;
-        this.emit("collect", { bubble: b, power: b.power });
+        if (this.grantPower(b.power))
+          this.emit("collect", { bubble: b, power: b.power });
       }
     }
     // Detached, unpopped bubbles remain food, even before the first rescue.
@@ -416,6 +428,8 @@ export class Game {
     }
     if (direct.length) this.emit("pop", { bubbles: direct, reason });
     if (fallen.length) this.emit("fall", { bubbles: fallen });
+    if (this.colorCount > previousColors)
+      this.emit("color-unlock", { count: this.colorCount });
     return { direct, fallen };
   }
   updateGarden(dt) {
@@ -478,11 +492,27 @@ export class Game {
     this.emit("formation");
   }
   fire(path, color = this.current) {
+    if (this.selected === "fire") {
+      if (this.status !== "playing" || this.inventory.fire <= 0) return false;
+      const removed = this.fireTargets(path);
+      if (!removed.length) return false;
+      this.inventory.fire--;
+      this.selected = null;
+      this.shots++;
+      this.settle(removed, "fire");
+      this.emit("power", { power: "fire" });
+      this.progress();
+      this.current = this.chooseColor();
+      this.next = this.chooseColor(this.current);
+      this.revision++;
+      return true;
+    }
     if (this.status !== "playing" || !path.cell || this.grid.get(...path.cell))
       return false;
     const wild = this.selected === "wild";
     if (this.selected && !wild) return false;
     if (wild && this.inventory.wild <= 0) return false;
+    if (!Number.isInteger(color) || color < 0 || color >= this.colorCount) return false;
     if (wild) {
       this.inventory.wild--;
       this.selected = null;
@@ -518,6 +548,30 @@ export class Game {
     this.revision++;
     return true;
   }
+  // Breadth-first spread from the first collision; never jump an empty cell.
+  // This is shared by the aiming preview and the shot's resolution.
+  fireTargets(path) {
+    const hit = [...this.grid.cells.values()].find(b => b.id === path?.hit);
+    if (!hit) return [];
+    const found = new Set([hit.id]), queue = [hit];
+    for (let i = 0; i < queue.length && queue.length < 5; i++) {
+      for (const [r, c] of this.grid.neighbors(queue[i].r, queue[i].c)) {
+        const b = this.grid.get(r, c);
+        if (b && !found.has(b.id)) {
+          found.add(b.id);
+          queue.push(b);
+          if (queue.length === 5) break;
+        }
+      }
+    }
+    return queue;
+  }
+  grantPower(power) {
+    if (power === "bomb" && this.bombsFull()) return false;
+    this.inventory[power]++;
+    return true;
+  }
+  bombsFull() { return this.inventory.bomb >= BOMB_CAP; }
   select(power) {
     if (
       this.status !== "playing" ||
@@ -538,6 +592,7 @@ export class Game {
     if (
       this.status !== "playing" ||
       !power ||
+      power === "fire" ||
       power === "wild" ||
       this.inventory[power] <= 0
     )
@@ -576,7 +631,6 @@ export class Game {
     } else {
       const p = this.grid.position(r, c);
       removed = all.filter((b) => {
-        if (power === "fire") return b.r === r;
         if (power === "rainbow")
           return b.type === "normal" && b.color === target.color;
         if (power === "lightning")
@@ -661,6 +715,7 @@ export class Game {
       this[k] = s[k];
     this.rescued = s.rescued.map((a) => ({ ...a }));
     this.inventory = { ...s.inventory };
+    this.inventory.bomb = Math.min(BOMB_CAP, this.inventory.bomb);
     this.ground = (s.ground ?? []).map((f) => ({ ...f }));
     this.gardenTime = s.gardenTime ?? 0;
     this.powerCursor = s.powerCursor ?? 0;
@@ -684,6 +739,7 @@ export class Game {
       this.grid.put(r, c, { ...data, id });
     }
     this.events = [];
+    ensureColors(this.colorCount);
     return this;
   }
 }

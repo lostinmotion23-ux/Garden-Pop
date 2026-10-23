@@ -102,6 +102,15 @@ export class GardenView {
     this.dotHalo.frustumCulled=false;this.dotHalo.renderOrder=4;this.root.add(this.dotHalo);
     this.shot = new T.Mesh(this.sphere, art.bubbleMaterial.clone());
     this.root.add(this.shot);
+    this.fireShot = this.power("fire");
+    this.fireShot.visible = false;
+    this.root.add(this.fireShot);
+    this.firePreview = new T.InstancedMesh(this.rimGeometry,
+      new T.MeshBasicMaterial({color:'#ffad55',depthTest:false,transparent:true,opacity:.95}),5);
+    this.firePreview.count = 0;
+    this.firePreview.frustumCulled = false;
+    this.firePreview.renderOrder = 6;
+    this.root.add(this.firePreview);
     this.nextShot = new T.Mesh(this.sphere, art.bubbleMaterial.clone());
     this.nextShot.scale.setScalar(0.8);
     this.nextShot.position.set(0.67, BOARD.launcher - 0.2, BOARD.z);
@@ -302,7 +311,29 @@ export class GardenView {
         };
     }
   }
+  growInstances(name, required) {
+    const previous = this[name];
+    if (required <= previous.instanceMatrix.count) return;
+    let capacity = previous.instanceMatrix.count;
+    while (capacity < required) capacity *= 2;
+    // Uploaded instance buffers cannot be resized in place. Replace only the
+    // batch, retaining its shared geometry/material, then release old buffers.
+    const mesh = new T.InstancedMesh(previous.geometry, previous.material, capacity);
+    mesh.instanceMatrix.setUsage(previous.instanceMatrix.usage);
+    mesh.frustumCulled = false;
+    mesh.renderOrder = previous.renderOrder;
+    mesh.visible = previous.visible;
+    this.root.add(mesh);
+    previous.removeFromParent();
+    previous.dispose();
+    this[name] = mesh;
+  }
   update(game, dt, path, flight, selectedCell) {
+    const required = game.grid.cells.size + game.ground.length;
+    this.growInstances('bubbles', required);
+    this.growInstances('glints', required);
+    this.growInstances('contacts', required + game.rescued.length);
+    while(this.palette.length < game.colorCount)this.palette.push(new T.Color(COLORS[this.palette.length]));
     this.time += dt;
     this.popEffects.update(dt);
     const first = path?.points?.[1];
@@ -322,7 +353,6 @@ export class GardenView {
     };
     const dummy = this.dummy;
     const add = (x, y, z, color, scale = 1, shadow = "board") => {
-      if (index >= 2048) return;
       if (shadow === "board") footprint(x + 0.045, y - 0.06, -1.925, 0.56, 0.56);
       if (shadow === "floor") footprint(x, 0.636, z, 0.5, 0.45, true);
       dummy.position.set(x, y, z);
@@ -425,7 +455,19 @@ export class GardenView {
       : { x: 0, y: BOARD.launcher };
     this.shot.position.set(shotPosition.x, shotPosition.y, BOARD.z + 0.03);
     this.shot.material.color.set(COLORS[flight?.color ?? (game.selected === "wild" ? this.selectedColor ?? game.current : game.current)]);
-    this.shot.visible = game.status === "playing";
+    const fireActive = game.selected === "fire" && game.status === "playing";
+    this.shot.visible = game.status === "playing" && !fireActive;
+    this.fireShot.visible = fireActive;
+    this.fireShot.position.copy(this.shot.position);
+    if(fireActive)animatePower(this.fireShot,this.time);
+    const fireTargets = fireActive && this.aimActive && !flight ? game.fireTargets(path) : [];
+    fireTargets.forEach((b,i)=>{
+      const p=game.grid.position(b.r,b.c);
+      dummy.position.set(p.x,p.y,BOARD.z+.28);dummy.scale.setScalar(1);dummy.updateMatrix();
+      this.firePreview.setMatrixAt(i,dummy.matrix);
+    });
+    this.firePreview.count=fireTargets.length;
+    this.firePreview.instanceMatrix.needsUpdate=true;
     this.mascots.forEach((animal, i) => {
       animal.visible = Boolean(this.showcase);
       if (animal.visible) {
@@ -469,14 +511,15 @@ export class GardenView {
     const advance=Math.max(0,1-(this.time-this.nextChangedAt)/.3);
     this.nextShot.position.y=BOARD.launcher-.2+Math.sin(advance*Math.PI)*.10;
     this.nextShot.material.color.set(COLORS[game.next]);
-    const assistance=this.guideFade.update(game.score,dt,!!flight);
+    const fadedAssistance=this.guideFade.update(game.score,dt,!!flight);
+    const assistance=fireActive?1:fadedAssistance;
     this.dotMaterial.opacity=.72*assistance;
     this.dotHalo.material.opacity=.12*assistance;
     this.ghost.material.opacity=.4*assistance;
     let dot = 0;
     if (
       assistance>0 && this.aimActive && path && !flight && game.status === "playing" &&
-      (!game.selected || game.selected === "wild")
+      (!game.selected || game.selected === "wild" || fireActive)
     ) {
       for (let d = 0.3; d < path.distance && dot < 150; d += 0.17) {
         const p = pointAlong(path, d);
@@ -500,22 +543,18 @@ export class GardenView {
       this.ghost.material.color.set(COLORS[game.selected === "wild" ? this.selectedColor ?? game.current : game.current]);
     }
     this.target.visible = Boolean(
-      this.aimActive && game.selected && game.selected !== "wild" && selectedCell,
+      this.aimActive && game.selected && game.selected !== "wild" && game.selected !== "fire" && selectedCell,
     );
     if (this.target.visible) {
       const p = game.grid.position(selectedCell.r, selectedCell.c);
       this.target.position.set(p.x, p.y, BOARD.z + 0.28);
       this.targetRing.scale.set(
-        game.selected === "fire"
-          ? 6
-          : game.selected === "lightning"
+        game.selected === "lightning"
             ? 0.25
             : game.selected === "bomb"
               ? 1.85
               : 1,
-        game.selected === "fire"
-          ? 0.2
-          : game.selected === "lightning"
+        game.selected === "lightning"
             ? 5
             : game.selected === "bomb"
               ? 1.85
@@ -560,6 +599,7 @@ export class GardenView {
     this.root.removeFromParent();
     this.cannon.dispose();
     this.popEffects.dispose();
+    this.bubbles.dispose();this.glints.dispose();this.contacts.dispose();
     this.sphere.dispose();
     this.contactGeometry.dispose(); this.contactMaterial.dispose();
     this.skillGeometry.dispose(); this.skillRim.dispose(); this.skillRimMaterial.dispose();
@@ -575,6 +615,7 @@ export class GardenView {
     this.dots.geometry.dispose();
     this.dotMaterial.dispose();
     this.shot.material.dispose();
+    this.firePreview.material.dispose();
     this.nextShot.material.dispose();
 
     this.ghost.material.dispose();

@@ -65,11 +65,50 @@ const tick=(g,seconds)=>{for(let t=0;t<seconds;t+=.05)g.updateGarden(.05);};
 }
 for(const power of POWERS){
  const g=new Game();g.inventory[power]=1;g.pendingMisses=1;assert.ok(g.select(power));g.cancel();assert.equal(g.inventory[power],1);g.select(power);
- if(power==='wild')assert.ok(g.fire(trajectory(g.grid,0),2));else assert.ok(g.use(4,9));
+ if(power==='wild'||power==='fire')assert.ok(g.fire(trajectory(g.grid,0),2));else assert.ok(g.use(4,9));
  assert.equal(g.rows,0);assert.equal(g.misses,0);assert.equal(g.pendingMisses,1);assert.equal(g.selected,null);assert.equal(powers(g).length,3);
  assert.ok(g.events.some(e=>e.type===(power==='wild'?'miss':'power'))||power==='wild');
 }
-console.log('PASS: 20/19 touching columns, 25% larger spheres, three starting/replenishing skills, two-miss rows, continuing rescue/refill, persistent food, individual meals/bombs and deterministic snapshots.');
+{
+ const g=new Game();g.inventory.fire=2;g.select('fire');
+ const before=g.snapshot();assert.equal(g.use(0,9),false);assert.deepEqual(g.snapshot(),before);
+ for(const angle of [-1.3,-.6,0,.6,1.3]){
+  const path=trajectory(g.grid,angle),targets=g.fireTargets(path);
+  assert.equal(targets[0].id,path.hit);assert.equal(targets.length,5);
+  const connected=new Set([targets[0].id]);
+  for(const b of targets.slice(1)){
+   assert.ok(g.grid.neighbors(b.r,b.c).some(([r,c])=>connected.has(g.grid.get(r,c)?.id)));
+   connected.add(b.id);
+  }
+  const copy=new Game().restore(before);copy.select('fire');const popped=copy.popped;
+  assert.ok(copy.fire(path));assert.ok(copy.popped-popped<=5);assert.equal(copy.inventory.fire,1);
+  assert.ok(targets.every(b=>![...copy.grid.cells.values()].some(n=>n.id===b.id)));
+ }
+ const h=fixture();h.grid.put(0,9,{type:'normal',color:0});h.grid.put(0,15,{type:'normal',color:1});
+ const p=trajectory(h.grid,0);assert.equal(h.fireTargets(p).length,1);
+ h.inventory.fire=1;h.select('fire');assert.equal(h.fire({hit:null}),false);assert.equal(h.inventory.fire,1);
+ // A support shot can drop more than five while burning at most five.
+ const d=fixture();d.grid.put(0,1,{type:'normal',color:0});d.grid.put(1,1,{type:'normal',color:0});
+ for(let c=1;c<13;c++)d.grid.put(2,c,{type:'normal',color:1});
+ for(let r=3;r<8;r++)for(let c=10;c<15;c++)d.grid.put(r,c,{type:'normal',color:1});
+ d.inventory.fire=1;d.select('fire');const bounce=trajectory(d.grid,-1.27);assert.ok(bounce.points.length>2);
+ assert.ok(d.fire(bounce));assert.equal(d.popped,5);assert.equal(d.detached,26);assert.equal(d.ground.length,26);
+}
+{
+ const g=fixture();g.inventory.bomb=3;
+ const p=g.grid.put(0,9,{type:'power',power:'bomb'});g.settle([p]);
+ assert.equal(g.inventory.bomb,3);assert.ok(!g.events.some(e=>e.type==='collect'));
+ const top=g.grid.put(0,9,{type:'normal',color:0});g.grid.put(1,9,{type:'animal',kind:'bunny',name:'Mochi'});
+ for(let r=2;r<5;r++)for(let c=5;c<13;c++)g.grid.put(r,c,{type:'normal',color:1});
+ g.settle([top]);tick(g,120);assert.equal(g.rescued[0].totalEaten,24);
+ assert.equal(g.rescued[0].eaten,0);assert.equal(g.inventory.bomb,3);assert.ok(!g.events.some(e=>e.type==='bomb'));
+ g.inventory.bomb=2;
+ for(let r=2;r<4;r++)for(let c=5;c<13;c++)g.grid.put(r,c,{type:'normal',color:1});
+ g.settle([]);tick(g,120);assert.equal(g.inventory.bomb,3);assert.equal(g.rescued[0].eaten,0);
+ assert.equal(g.events.filter(e=>e.type==='bomb').length,1);
+ const saved=g.snapshot();saved.inventory.bomb=20;assert.equal(new Game().restore(saved).inventory.bomb,3);
+}
+console.log('PASS: core continuous rules, aimed five-bubble fire, connected spread, bomb cap, paused production and snapshot compatibility.');
 // Play real analytic aim trajectories through multiple rescues and ceiling refills.
 const g=new Game(),shots=[];let afterFirst=0;
 for(let attempt=0;attempt<180;attempt++){

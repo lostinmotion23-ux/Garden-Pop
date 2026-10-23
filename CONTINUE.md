@@ -1,3 +1,7 @@
+> **Color progression update, 2026-10-23:** Start with five colors; each 10,000 points unlocks one more for fresh rows/refills, with no cap. Wild picker and effects support the expanded palette. Twinkle, Maple and Biscuit are removed from the game roster. See [current gameplay changes](docs/game-difficulty-pass.md); earlier five-color/eight-animal notes are historical. Local only.
+
+> **Game difficulty update, 2026-10-23:** Aimed Fire Ball (up to five connected bubbles, with a preview) and a three-Big-Bomb cap are implemented and tested locally. The user explicitly approved these rule changes; they supersede the earlier preservation notes for fire and bomb rewards. See [difficulty pass notes](docs/game-difficulty-pass.md). Five colors retained. No Project 0 deployment.
+
 > **Latest local update, 2026-10-21:** All five systems from the new improvement brief are implemented locally: miniature 3D meadow, real forest trees, fieldstone walls, collision-aware pets and score-based aiming assistance. Read [the coordinated update record](docs/garden-environment-update.md) for files, tests, captures and the software-rendering performance limitation. Previous checkpoint notes below are historical.
 
 > **Local continuation, 2026-10-21:** Warm dusk is now confirmed by the user. A first courtyard iteration is implemented locally. Read [local courtyard progress](docs/local-courtyard-progress.md) for current setup, captures and validation. The earlier checkpoint below is historical; no Project 0 publication has occurred.
